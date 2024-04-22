@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'EuroStyle Normal';
+    font-style: normal;
+    font-weight: normal;
+    src: local('fonts/EuroStyle Normal'), url('../fonts/EuroStyle\ Normal.woff') format('woff');
+}
+
+body {
+    background-color: #160226;
+    font-family: 'EuroStyle Normal';
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0;
+    height: 100vh;
+}
+
+h1 {
+    color: #FDC5FF;
+    font-size: 10vh;
+}
