@@ -2,7 +2,7 @@
     font-family: 'EuroStyle Normal';
     font-style: normal;
     font-weight: normal;
-    src: local('fonts/EuroStyle Normal'), url('../fonts/EuroStyle\ Normal.woff') format('woff');
+    src: local('/fonts/EuroStyle Normal'), url('../fonts/EuroStyle Normal.woff') format('woff');
 }
 
 body {
