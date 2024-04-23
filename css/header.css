@@ -1,0 +1,105 @@
+@font-face {
+    font-family: 'EuroStyle Normal';
+    font-style: normal;
+    font-weight: normal;
+    src: local('/fonts/EuroStyle Normal'), url('../fonts/EuroStyle Normal.woff') format('woff');
+}
+
+.menuOpenIcon {
+    background: url('../icons/menu.svg');
+    height: 30px;
+    width: 35px;
+    display: block;
+}
+
+.menuCloseIcon {
+    background: url('../icons/closeMenu.svg');
+    height: 30px;
+    width: 35px;
+    display: block;
+}
+
+* {
+    font-family: 'EuroStyle Normal';
+}
+
+header {
+    background-color: #0F0F0F;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+#logo {
+    display: flex;
+}
+
+#headerTextContainer {
+    margin: 0px 1vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#headerClickableText {
+    min-width: 230px;
+    max-width: 25vw;
+    display: inherit;
+    justify-content: space-around;
+    font-size: x-large;
+}
+
+#headerClickableText a:hover {
+    text-decoration: underline;
+}
+
+#headerClickableText .menuOpenIcon, .menuCloseIcon {
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    #headerClickableText a:not(:first-child) {display: none;}
+    #headerClickableText .menuOpenIcon {display: inherit;}
+    #headerClickableText {min-width: 50px;}
+}
+
+#sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 100vw;
+    background-color: #0F0F0F;
+    overflow-x: hidden;
+    padding-top: 20px;
+    transition: 0.5s;
+}
+
+#sidebar a{
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: x-large;
+    display: block;
+    transition: 0.3s;
+}
+
+#sidebar i {
+    right: 50vw;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    background-repeat: no-repeat;
+}
+
+body {
+    background: rgb(22,2,38);
+    background: linear-gradient(215deg, rgba(22,2,38,1) 0%, rgba(55,4,86,1) 100%);
+    background-attachment: fixed;
+    margin: 0;
+    height: 100vh;
+}
+
+h1, a {
+    color: #FDC5FF;
+    text-decoration: none;
+    margin: 5vh, auto;
+}

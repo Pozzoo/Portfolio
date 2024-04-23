@@ -1,23 +1,100 @@
-@font-face {
-    font-family: 'EuroStyle Normal';
-    font-style: normal;
-    font-weight: normal;
-    src: local('/fonts/EuroStyle Normal'), url('../fonts/EuroStyle Normal.woff') format('woff');
+.projectShowcaseArea {
+    margin: 0px 5vw;
+    margin-top: 10vh;
+    min-height: fit-content;
+    width: 90vw;
+    display: grid;
+    justify-content: space-around;
+    align-items: center;
+    grid-template-columns: auto;
+    grid-template-rows: 1;
 }
 
-body {
-    background-color: #160226;
-    font-family: 'EuroStyle Normal';
-    
+.projectShowcaseArea div {
+    grid-row: 1;
+}
+
+.projectWrapper {
+    height: 100%;
+    border-radius: 20px;
+    border: #0F0F0F solid 10px;
+    background-color: #370456;
+}
+
+.projectWrapper a {
+    display: block;
+    text-align: center;
+}
+
+.projectWrapper p, h3 {
+    margin: 0;
+    font-size: larger;
+}
+
+.projectWrapper a img {
+    height: 35vh;
+    width: 220px;
+}
+
+.projectWrapper a:hover {
+    text-decoration: underline;
+}
+
+.outerPanelRight {
+    margin-top: 25vh;
+    width: 95vw;
+    height: 40vh;
+    background-color: #0F0F0F;
+    border-radius: 20px;
+
+}
+
+.innerPanelRight {
+    float: right;
+    background-color: #370456;
+    border-radius: 20px;
+    margin: 5vh 10vw;
+}
+
+.innerPanelLeft, .innerPanelRight {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    margin: 0;
-    height: 100vh;
+    font-size: xx-large;
+    height: 500px;
+    width: 500px;
 }
 
-h1 {
+.outerPanelTextRight {
+    margin-left: 5vw;
+    padding-top: 10px;
+    max-width: 40vw;
+}
+
+.outerPanelLeft {
+    display: flex;
+    margin: 5vh 5vw;
+    margin-top: 200px;
+    width: 95vw;
+    height: 40vh;
+    background-color: #0F0F0F;
+    border-radius: 20px;
+
+}
+
+.innerPanelLeft {
+    background-color: #370456;
+    border-radius: 20px;
+    margin: 5vh 10vw;
+}
+
+.outerPanelTextLeft {
+    max-width: 40vw;
+}
+
+
+h1, a {
     color: #FDC5FF;
-    font-size: 10vh;
+    text-decoration: none;
+    margin: 5vh, auto;
 }

@@ -1,12 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Pozzoo</title>
-</head>
-<body>
-    <h1>Big things are coming</h1>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/animations.css">
+        <link rel="stylesheet" href="css/header.css">
+        <title>Pozzoo</title>
+    </head>
+    <header>
+        <div id="headerTextContainer">
+            <div id="logo">
+                <h1 style="float: left;">\Dev\Pozzoo></h1> 
+                <h1 class="languagesText"></h1>
+                <h1 style="float: right;" class="blink">_</h1>
+            </div>
+            <div id="headerClickableText">
+                <i class="menuOpenIcon" id="openButton" onclick="openNav()"></i>
+                <a href="index.html">Home</a>
+                <a href="projects.html">Projects</a>
+                <a href="Contact.html">Contact</a>
+            </div>
+            <div id="sidebar">
+                <i class="menuCloseIcon" id="closeButton" onclick="closeNav()"></i>
+                <a href="index.html">Home</a>
+                <a href="projects.html">Projects</a>
+                <a href="Contact.html">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <body>
+        <div class="projectShowcaseArea">
+            <div class="projectWrapper">
+                <a class="imageLink" href="https://github.com/Pozzoo/quickTreePlugin/">
+                    <img src="/projectImages/Quick Tree-filled.png" alt="a stylized minecraft tree falling">
+                    <h3>Quick Tree Plugin</h3>
+                    <p>Cut down trees quickly!</p>
+                </a>
+            </div>
+            <div class="projectWrapper">
+                <a href="https://github.com/Pozzoo/CurveViewer">
+                    <img src="/projectImages/Curve Viewer-filled.png" alt="Two points interpolated by a curve">
+                    <h3>Curve Viewer Website</h3>
+                    <p>Create and interpolate curves!</p>
+                </a>
+            </div>
+            <div class="projectWrapper">
+                <a href="https://github.com/Pozzoo/loginPage/">
+                    <img src="/projectImages/Login Page.png" alt="a stylized minecraft tree falling">
+                    <h3>Login Website Page</h3>
+                    <p>Modern and Stylish Login Page</p>
+                </a>
+            </div>
+        </div>
+
+        <div id="panelContainer">
+            <div class="outerPanelLeft">
+                <div class="innerPanelLeft">
+                    <h1>About Me</h1>
+                </div>
+                <div class="outerPanelTextLeft">
+                    <h1>Hello! I'm Artur I am a Computer Scientist (in formation). I am pretty versitile when it comes to programming, and a quick learner! I really enjoy coding and learning new tech related stuff. I currently study at IFSC (Instituto Federal de Santa Catarina) and I'm open for work!</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="panels">
+            <div class="outerPanelRight">
+                <div class="innerPanelRight">
+                    <h1>Known technologies</h1>
+                </div>
+                <div class="outerPanelTextRight">
+                    <h1>I'm mainly a Java developer, but I love to learn new languages and skills! Currently im well familiar with the Java language, as well as HTML, CSS and JavaScript. As my main tools I use Intellij IDEA, NetBeans, VSCode and Git. Currently I'm learning C++ and soon I wanto to try C#. Although it isn't tech related it's good to mention that im fluent in both Portuguese and English.</h1>
+                </div>
+            </div>
+
+        </div>
+    </body>
+
+    <script src="js/script.js"></script>
 </html>

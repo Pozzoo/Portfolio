@@ -1,0 +1,10 @@
+* {
+    overflow-y: hidden;
+}
+
+body .comingSoon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 98vh;
+}
