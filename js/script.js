@@ -53,9 +53,11 @@ function unWrite(element, i, arrayIndex, text) {
     setTimeout(() => unWrite(element, i - 1, arrayIndex, text), 230);
 }
 
+/*
+
 const projectArea = document.getElementById("projectShowcaseArea");
 const projects =  document.querySelectorAll(".projectWrapper");
-let index = -1;
+let index = -2;
 
 if (window.screen.width <= 600) {
     setInterval(carousel, 2000);
@@ -75,4 +77,4 @@ function carousel() {
 
     projectArea.style.transform = `translateX(${-index * 250}px)`;
 }
-
+*/

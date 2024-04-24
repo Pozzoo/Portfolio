@@ -27,6 +27,7 @@ header {
     background-color: #0F0F0F;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    width: 100vw;
 }
 
 #logo {

@@ -99,13 +99,13 @@ body {
 
 @media screen and (max-width: 900px) {
     .projectShowcaseArea {
-        transition: transform 0.5s ease-in-out;
         display: flex;
-        overflow-x: visible;
+        overflow-x: scroll;
     }
 
     .projectWrapper {
         margin: 0px 30px;
+        translate: 250px;
     }
 }
 
