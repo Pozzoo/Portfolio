@@ -97,7 +97,7 @@ body {
     max-width: 40vw;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 900px) {
     .projectShowcaseArea {
         transition: transform 0.5s ease-in-out;
         display: flex;
@@ -126,6 +126,11 @@ body {
     .outerPanelRight, .outerPanelLeft {
         height: fit-content; 
         min-height: 800px;
-        display: flex;
+        display: grid;
+    }
+
+    .outerPanelTextLeft, .outerPanelTextRight {
+        min-width: fit-content;
+        margin: 0px 10vw;
     }
 }

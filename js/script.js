@@ -57,11 +57,9 @@ const projectArea = document.getElementById("projectShowcaseArea");
 const projects =  document.querySelectorAll(".projectWrapper");
 let index = -1;
 
-
 if (window.screen.width <= 600) {
     setInterval(carousel, 2000);
 }
-
 
 function carousel() {
     if (window.screen.width > 600) {
