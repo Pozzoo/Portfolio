@@ -1,6 +1,6 @@
 function openNav() {
     document.getElementById("sidebar").style.width = "250px";
-    document.getElementById("sidebar").style.left = "75vw";
+    document.getElementById("sidebar").style.left = "65vw";
 
     document.getElementById("openButton").style.display = "none";
     
@@ -53,8 +53,9 @@ function unWrite(element, i, arrayIndex, text) {
     setTimeout(() => unWrite(element, i - 1, arrayIndex, text), 230);
 }
 
-/*
 
+//Carousel code (enables funky scroling on mobile)
+/*
 const projectArea = document.getElementById("projectShowcaseArea");
 const projects =  document.querySelectorAll(".projectWrapper");
 let index = -2;
