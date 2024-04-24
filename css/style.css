@@ -1,3 +1,7 @@
+body {
+    overflow-x: hidden;
+}
+
 .projectShowcaseArea {
     margin: 0px 5vw;
     margin-top: 10vh;
@@ -19,6 +23,7 @@
     border-radius: 20px;
     border: #0F0F0F solid 10px;
     background-color: #370456;
+    min-width: 220px;
 }
 
 .projectWrapper a {
@@ -32,7 +37,7 @@
 }
 
 .projectWrapper a img {
-    height: 35vh;
+    height: 320px;
     width: 220px;
 }
 
@@ -46,7 +51,6 @@
     height: 40vh;
     background-color: #0F0F0F;
     border-radius: 20px;
-
 }
 
 .innerPanelRight {
@@ -63,6 +67,8 @@
     font-size: xx-large;
     height: 500px;
     width: 500px;
+    min-width: 500px;
+    min-height: 500px;
 }
 
 .outerPanelTextRight {
@@ -79,7 +85,6 @@
     height: 40vh;
     background-color: #0F0F0F;
     border-radius: 20px;
-
 }
 
 .innerPanelLeft {
@@ -92,9 +97,35 @@
     max-width: 40vw;
 }
 
+@media screen and (max-width: 600px) {
+    .projectShowcaseArea {
+        transition: transform 0.5s ease-in-out;
+        display: flex;
+        overflow-x: visible;
+    }
 
-h1, a {
-    color: #FDC5FF;
-    text-decoration: none;
-    margin: 5vh, auto;
+    .projectWrapper {
+        margin: 0px 30px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .innerPanelLeft, .innerPanelRight {
+        font-size: large;
+        height: 200px;
+        width: 200px;
+        min-width: 200px;
+        max-height: 200px;
+        min-height: 200px;
+    }
+
+    .innerPanelLeft h1, .innerPanelRight h1 {
+        text-align: center;
+    }
+
+    .outerPanelRight, .outerPanelLeft {
+        height: fit-content; 
+        min-height: 800px;
+        display: flex;
+    }
 }

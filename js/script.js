@@ -52,3 +52,29 @@ function unWrite(element, i, arrayIndex, text) {
 
     setTimeout(() => unWrite(element, i - 1, arrayIndex, text), 230);
 }
+
+const projectArea = document.getElementById("projectShowcaseArea");
+const projects =  document.querySelectorAll(".projectWrapper");
+let index = -1;
+
+
+if (window.screen.width <= 600) {
+    setInterval(carousel, 2000);
+}
+
+
+function carousel() {
+    if (window.screen.width > 600) {
+        projectArea.style.transform = `translateX(0px)`;
+        return;
+    }
+
+    index++;
+
+    if (index > projects.length - 2) {
+        index = -1;
+    }
+
+    projectArea.style.transform = `translateX(${-index * 250}px)`;
+}
+
