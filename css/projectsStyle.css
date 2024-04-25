@@ -1,10 +1,47 @@
 * {
-    overflow-y: hidden;
+    overflow-y: visible;
 }
 
-body .comingSoon {
+.projectsText {
+    margin: 3vw;
+}
+
+.projectsArea {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30vh, 1fr));
+}
+
+.projectsArea .project{
+    margin: 3vw;
+    background-color: #0F0F0F;
+    width: 30vh;
+    height: 30vh;
+    border-radius: 20px;
+}
+
+.projectBanner img {
+    width: 30vh;
+    height: 15vh;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.projectTitle {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 98vh;
+    justify-content: space-around;
+}
+
+.projectTitle h2 {
+    margin: auto;
+}
+
+.projectDescription p {
+    margin: 1vh 1vw;
+}
+
+.projectType {
+    background-color: #8D17B6;
+    border-radius: 20px;
+    padding: 1px 5px;
+    font-weight: normal;
 }
