@@ -1,0 +1,23 @@
+{
+    "projects": [
+        {
+            "imgPath": "../projectImages/Quick Tree-banner.png",
+            "projectTitle": "Quick Tree",
+            "projectType": "Plugin",
+            "projectDescription": "A Minecraft Plugin that makes trees fall when cut down"
+        },
+        {
+            "imgPath": "../projectImages/Quick Tree-banner.png",
+            "projectTitle": "Quick Tree",
+            "projectType": "Plugin",
+            "projectDescription": "A Minecraft Plugin that makes trees fall when cut down"
+        },
+        {
+            "imgPath": "../projectImages/Quick Tree-banner.png",
+            "projectTitle": "Quick Tree",
+            "projectType": "Plugin",
+            "projectDescription": "A Minecraft Plugin that makes trees fall when cut down"
+        }
+    ]
+    
+}

@@ -4,11 +4,15 @@
 
 .projectsText {
     margin: 3vw;
+    margin-top: calc(3vw + 82px);
+    width: auto;
 }
 
 .projectsArea {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30vh, 1fr));
+    width: 100vw;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(30vh, 400px));
 }
 
 .projectsArea .project{

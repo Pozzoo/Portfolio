@@ -4,7 +4,7 @@ body {
 
 .projectShowcaseArea {
     margin: 0px 5vw;
-    margin-top: 10vh;
+    margin-top: calc(10vh + 82px);
     min-height: fit-content;
     width: 90vw;
     display: grid;
