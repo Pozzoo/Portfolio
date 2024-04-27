@@ -24,12 +24,13 @@
 }
 
 header {
+    z-index: 1;
     position: fixed;
     top: 0;
     background-color: #0F0F0F;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-    width: 99vw;
+    width: 100vw;
     overflow-x: hidden;
 }
 
@@ -64,6 +65,7 @@ header {
     #headerClickableText a:not(:first-child) {display: none;}
     #headerClickableText .menuOpenIcon {display: inherit;}
     #headerClickableText {min-width: 50px;}
+    #logo {font-size: x-small;}
 }
 
 #sidebar {
