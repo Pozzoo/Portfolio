@@ -8,3 +8,7 @@ body .comingSoon {
     align-items: center;
     height: 98vh;
 }
+
+@media screen and (max-width: 600px) {
+    #logo {font-size: x-small;}
+}

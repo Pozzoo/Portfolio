@@ -49,3 +49,7 @@
     padding: 1px 5px;
     font-weight: normal;
 }
+
+@media screen and (max-width: 600px) {
+    #logo {font-size: x-small;}
+}

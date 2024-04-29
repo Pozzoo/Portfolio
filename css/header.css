@@ -5,17 +5,16 @@
     src: local('/fonts/EuroStyle Normal'), url('../fonts/EuroStyle Normal.woff') format('woff');
 }
 
-.menuOpenIcon {
-    background: url('../icons/menu.svg');
-    height: 30px;
+#openButton {
+    height: 35px;
     width: 35px;
     display: block;
 }
 
-.menuCloseIcon {
-    background: url('../icons/closeMenu.svg');
-    height: 30px;
+#closeButton {
+    height: 35px;
     width: 35px;
+    margin-left: 7vw;
     display: block;
 }
 
@@ -31,7 +30,9 @@ header {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     width: 100vw;
+    min-height: 8vh;
     overflow-x: hidden;
+    align-items: center;
 }
 
 #logo {
@@ -57,15 +58,15 @@ header {
     text-decoration: underline;
 }
 
-#headerClickableText .menuOpenIcon, .menuCloseIcon {
+#headerClickableText #openButton, #closeButton {
     display: none;
 }
 
 @media screen and (max-width: 600px) {
     #headerClickableText a:not(:first-child) {display: none;}
-    #headerClickableText .menuOpenIcon {display: inherit;}
+    #headerClickableText #openButton {display: inherit;}
     #headerClickableText {min-width: 50px;}
-    #logo {font-size: x-small;}
+    #logo {font-size: small;}
 }
 
 #sidebar {

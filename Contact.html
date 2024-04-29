@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pozzoo's Projects</title>
-    <link rel="stylesheet" href="css/contactStyle.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/contactStyle.css">
 </head>
 <header>
     <div id="headerTextContainer">
@@ -16,13 +16,19 @@
             <h1 style="float: right;" class="blink">_</h1>
         </div>
         <div id="headerClickableText">
-            <i class="menuOpenIcon" id="openButton" onclick="openNav()"></i>
+            <svg id="openButton" onclick="openNav()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#fff2ff" fill="none">
+                <path d="M4 5L20 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M4 12L20 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M4 19L20 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
             <a href="index.html">Home</a>
             <a href="projects.html">Projects</a>
             <a href="Contact.html">Contact</a>
         </div>
         <div id="sidebar">
-            <i class="menuCloseIcon" id="closeButton" onclick="closeNav()"></i>
+            <svg id="closeButton" onclick="closeNav()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#fff2ff" fill="none">
+                <path d="M19.0005 4.99988L5.00045 18.9999M5.00045 4.99988L19.0005 18.9999" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
             <a href="index.html">Home</a>
             <a href="projects.html">Projects</a>
             <a href="Contact.html">Contact</a>
