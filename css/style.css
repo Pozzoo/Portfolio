@@ -43,6 +43,8 @@ body {
 }
 
 .projectWrapper a img {
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
     height: 320px;
     width: 220px;
 }
@@ -101,6 +103,11 @@ body {
 
 .outerPanelTextLeft {
     max-width: 40vw;
+}
+
+svg {
+    height: 32px;
+    width: 32px;
 }
 
 @media screen and (max-width: 900px) {
