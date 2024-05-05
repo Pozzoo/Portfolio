@@ -19,7 +19,7 @@ function closeNav() {
 }
 
 const languagesText = document.querySelector(".languagesText");
-const text = new Array("Java", "HTML", "CSS", "JavaScript");
+const text = new Array("Java", "C++", "HTML", "CSS", "JavaScript", "TypeScript");
 
 typewriter(languagesText, text);
 
