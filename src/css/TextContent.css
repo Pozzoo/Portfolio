@@ -1,0 +1,22 @@
+.content {
+    background-color: white;
+    height: 100%;
+    border: 2px solid #808080;
+    color: black;
+
+    display: flex;
+    flex-direction: column;
+
+    text-align: left;
+    padding: 5px;
+
+    font-size: large;
+
+     p {
+         margin: 0 0 20px 0;
+     }
+
+    ul {
+        margin: 0 50px 20px 0;
+    }
+}

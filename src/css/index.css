@@ -1,0 +1,33 @@
+@font-face {
+  font-family: 'W95FA';
+  src: url('../assets/W95FA.otf');
+}
+
+* {
+  font-family: 'W95FA', sans-serif;
+}
+
+:root {
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #0d7173;
+
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: none;
+
+  image-rendering: crisp-edges;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+
+  a {
+    color: #000080;
+  }
+}
+
+body {
+  margin: 0;
+}

@@ -1,0 +1,41 @@
+.windowWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    height: 600px;
+    background: #c0c0c0;
+    margin-bottom: 40px;
+
+    border-top: 2px solid;
+    border-left: 2px solid;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+
+    .aboveContent {
+        display: flex;
+        flex-direction: column;
+
+        .upperBar {
+            display: flex;
+            margin: 2px;
+            padding: 2px;
+            background: #000080;
+            align-items: center;
+            height: 30px;
+
+            img {
+                height: 26px;
+                width: 28px;
+                padding: 2px 5px;
+            }
+
+            p {
+                font-size: 20px;
+            }
+        }
+
+        .additionalBar {
+            display: flex;
+        }
+    }
+}
