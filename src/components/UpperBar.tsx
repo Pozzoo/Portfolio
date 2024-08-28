@@ -1,5 +1,7 @@
 import '../css/UpperBar.css'
 import {useState} from "react";
+import folderIcon from '../assets/folderIcon.png'
+import networkIcon from '../assets/networkIcon.png'
 
 const UpperBar = () => {
     const [time, setTime] = useState(updateTime);
@@ -14,13 +16,13 @@ const UpperBar = () => {
                 <button>Start</button>
                 <button>
                     <div>
-                        <img src="src/assets/folderIcon.png" alt=""/>
+                        <img src={folderIcon} alt=""/>
                         Projects
                     </div>
                 </button>
                 <button>
                     <div>
-                        <img src="src/assets/networkIcon.png" alt=""/>
+                        <img src={networkIcon} alt=""/>
                         Contact
                     </div>
                 </button>

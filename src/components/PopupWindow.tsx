@@ -1,4 +1,5 @@
 import '../css/PopupWindow.css'
+import warningIcon from '../assets/warningIcon.png'
 import React from "react";
 
 type popupProps = {
@@ -15,7 +16,7 @@ const PopupWindow: React.FC<popupProps> = props => {
             </section>
             <section className="popup-body">
                 <div className="popup-content">
-                    <img src="src/assets/warningIcon.png" alt=""/>
+                    <img src={warningIcon} alt=""/>
                     <p>This website is still under development, some features may not work properly or at all!</p>
                 </div>
 
