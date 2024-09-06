@@ -1,10 +1,10 @@
 import './css/App.css'
-import Window from "./components/Window.tsx";
 import knownTechnologies from "./pages/knownTechnologies.tsx";
 import aboutMe from "./pages/aboutMe.tsx";
 import PopupWindow from "./components/PopupWindow.tsx";
 import React from "react";
 import notepadIcon from './assets/notepadIcon.png'
+import DesktopIcon from "./components/DesktopIcon.tsx";
 
 function App() {
     const [display, setDisplay] = React.useState("flex");
@@ -19,12 +19,9 @@ function App() {
             <PopupWindow closePopup={closePopup}></PopupWindow>
         </div>
 
-        <div className="windowRight">
-            <Window title="About Me" iconUrl={notepadIcon} windowContent={aboutMe} ></Window>
-        </div>
-
-        <div className="windowLeft">
-            <Window title="Known Technologies" iconUrl={notepadIcon} windowContent={knownTechnologies} ></Window>
+        <div className="desktop-grid">
+            <DesktopIcon iconTitle="About Me" imgUrl={notepadIcon} page={aboutMe}></DesktopIcon>
+            <DesktopIcon iconTitle="Known Technologies" imgUrl={notepadIcon} page={knownTechnologies}></DesktopIcon>
         </div>
     </>
   )

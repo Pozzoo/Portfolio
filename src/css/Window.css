@@ -5,6 +5,7 @@
     height: 600px;
     background: #c0c0c0;
     margin-bottom: 40px;
+    position: absolute;
 
     border-top: 2px solid;
     border-left: 2px solid;
@@ -17,20 +18,49 @@
 
         .upperBar {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+
             margin: 2px;
             padding: 2px;
             background: #000080;
-            align-items: center;
-            height: 30px;
 
-            img {
-                height: 26px;
-                width: 28px;
-                padding: 2px 5px;
+            .upper-right {
+                display: flex;
+                align-items: center;
+                height: 30px;
+
+                img {
+                    height: 26px;
+                    width: 28px;
+                    padding: 2px 5px;
+                }
+
+                p {
+                    font-size: 20px;
+                }
             }
 
-            p {
-                font-size: 20px;
+            button {
+                width: 23px;
+                height: 23px;
+
+                margin-right: 5px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                border: 1px solid white;
+                border-right-color: black;
+                border-bottom-color: black;
+
+                background-color: #c0c0c0;
+                color: black;
+            }
+
+            button:hover {
+                cursor: pointer;
             }
         }
 

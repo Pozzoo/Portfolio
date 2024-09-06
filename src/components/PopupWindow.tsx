@@ -1,5 +1,6 @@
 import '../css/PopupWindow.css'
 import warningIcon from '../assets/warningIcon.png'
+import exitButton from '../assets/exitButton.png'
 import React from "react";
 
 type popupProps = {
@@ -12,7 +13,7 @@ const PopupWindow: React.FC<popupProps> = props => {
         <div className="popup">
             <section className="popup-header">
                 <p>Warning</p>
-                <button onClick={props.closePopup}><img src="src/assets/exitButton.png" alt="X"/></button>
+                <button onClick={props.closePopup}><img src={exitButton} alt="X"/></button>
             </section>
             <section className="popup-body">
                 <div className="popup-content">
