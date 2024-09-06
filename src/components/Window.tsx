@@ -1,5 +1,5 @@
 import '../css/Window.css'
-import React, {useEffect, useRef} from "react"
+import React, {ReactNode, useEffect, useRef} from "react"
 import DefaultExtra from './DefaultExtra'
 import exitButton from '../assets/exitButton.png'
 
@@ -7,8 +7,8 @@ type windowProps = {
     closeFunction: () => void,
     title?: string,
     iconUrl?: string,
-    windowContent?: React.FC,
     extra?: React.FC
+    children: ReactNode
 }
 
 const Window: React.FC<windowProps> = props => {
@@ -28,7 +28,6 @@ const Window: React.FC<windowProps> = props => {
         lastY: 0
     })
 
-    const WindowContent = props.windowContent;
     const Extra = props.extra;
 
     useEffect(() => {
@@ -85,7 +84,7 @@ const Window: React.FC<windowProps> = props => {
                 </div>
             </section>
             <section className="content">
-                {WindowContent ? <WindowContent></WindowContent> : null}
+                {props.children}
             </section>
         </div>
     );

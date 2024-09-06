@@ -1,10 +1,16 @@
 import './css/App.css'
-import knownTechnologies from "./pages/knownTechnologies.tsx";
-import aboutMe from "./pages/aboutMe.tsx";
-import PopupWindow from "./components/PopupWindow.tsx";
 import React from "react";
-import notepadIcon from './assets/notepadIcon.png'
+
+import PopupWindow from "./components/PopupWindow.tsx";
 import DesktopIcon from "./components/DesktopIcon.tsx";
+import FolderContent from "./components/FolderContent.tsx";
+
+import notepadIcon from './assets/notepadIcon.png'
+import folderIcon from './assets/folderIcon.png'
+import AboutMe from "./pages/aboutMe.tsx";
+import KnownTechnologies from "./pages/knownTechnologies.tsx";
+
+
 
 function App() {
     const [display, setDisplay] = React.useState("flex");
@@ -20,8 +26,15 @@ function App() {
         </div>
 
         <div className="desktop-grid">
-            <DesktopIcon iconTitle="About Me" imgUrl={notepadIcon} page={aboutMe}></DesktopIcon>
-            <DesktopIcon iconTitle="Known Technologies" imgUrl={notepadIcon} page={knownTechnologies}></DesktopIcon>
+            <DesktopIcon iconTitle="About Me" imgUrl={notepadIcon}>
+                <AboutMe />
+            </DesktopIcon>
+            <DesktopIcon iconTitle="Known Technologies" imgUrl={notepadIcon}>
+                <KnownTechnologies />
+            </DesktopIcon>
+            <DesktopIcon iconTitle="Projects" imgUrl={folderIcon}>
+                <FolderContent />
+            </DesktopIcon>
         </div>
     </>
   )

@@ -1,18 +1,16 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {ReactNode, useEffect, useRef, useState} from "react";
 import '../css/DesktopIcon.css'
 import Window from "./Window.tsx";
 
 type iconProps = {
     imgUrl: string,
     iconTitle: string,
-    page: React.FC
+    children: ReactNode
 }
 
 const DesktopIcon: React.FC<iconProps> = props => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [clicked, setClicked] = useState<boolean>(false);
-
-    const IconContent = props.page;
 
     useEffect(() => {
         if (!containerRef.current) return
@@ -39,7 +37,11 @@ const DesktopIcon: React.FC<iconProps> = props => {
                 <p>{props.iconTitle}</p>
             </div>
 
-            {clicked ? <Window closeFunction={closeWindow} title={props.iconTitle} iconUrl={props.imgUrl} windowContent={IconContent}></Window> : null}
+            {clicked ?
+                <Window closeFunction={closeWindow} title={props.iconTitle} iconUrl={props.imgUrl}>
+                    {props.children}
+                </Window>
+            : null}
         </>
     );
 }
