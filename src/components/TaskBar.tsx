@@ -1,9 +1,10 @@
-import '../css/UpperBar.css'
+import '../css/TaskBar.css'
 import {useState} from "react";
 import folderIcon from '../assets/folderIcon.png'
 import networkIcon from '../assets/networkIcon.png'
+import divider from '../assets/divider.png'
 
-const UpperBar = () => {
+const TaskBar = () => {
     const [time, setTime] = useState(updateTime);
 
     setInterval(() => {
@@ -14,6 +15,7 @@ const UpperBar = () => {
         <div className="upper-bar">
             <div className="upper-left">
                 <button>Start</button>
+                <img className="divider" src={divider} alt=""/>
                 <button>
                     <div>
                         <img src={folderIcon} alt=""/>
@@ -29,6 +31,7 @@ const UpperBar = () => {
             </div>
 
             <div className='upper-right'>
+                <img className="divider" src={divider} alt=""/>
                 <p>{time.slice(0, 5)}</p>
             </div>
         </div>
@@ -39,4 +42,4 @@ function updateTime() {
     return (new Date().toLocaleTimeString())
 }
 
-export default UpperBar;
+export default TaskBar;

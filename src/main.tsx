@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './css/index.css'
-import UpperBar from "./components/UpperBar.tsx";
+import TaskBar from "./components/TaskBar.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -10,8 +10,8 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>,
 )
 
-createRoot(document.getElementById('header-root')!).render(
+createRoot(document.getElementById('footer-root')!).render(
     <StrictMode>
-        <UpperBar />
+        <TaskBar />
     </StrictMode>
 )
