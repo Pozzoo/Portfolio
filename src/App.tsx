@@ -33,7 +33,7 @@ function App() {
                 <KnownTechnologies />
             </DesktopIcon>
             <DesktopIcon iconTitle="Projects" imgUrl={folderIcon}>
-                <FolderContent />
+                <FolderContent title="Projects" />
             </DesktopIcon>
         </div>
     </>
