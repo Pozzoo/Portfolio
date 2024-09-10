@@ -5,10 +5,14 @@ import exitButton from '../assets/exitButton.png'
 
 type windowProps = {
     closeFunction: () => void,
-    title?: string,
+    title: string,
     iconUrl?: string,
-    extra?: React.FC
+    extra?: React.FC | React.FC<AddressBarProps>,
     children: ReactNode
+}
+
+type AddressBarProps = {
+    address: string
 }
 
 const Window: React.FC<windowProps> = props => {
@@ -28,7 +32,7 @@ const Window: React.FC<windowProps> = props => {
         lastY: 0
     })
 
-    const Extra = props.extra;
+    const Extra: React.FC | React.FC<AddressBarProps> | undefined = props.extra;
 
     useEffect(() => {
         if (!windowRef.current || !upperBarRef.current) return;
@@ -80,7 +84,7 @@ const Window: React.FC<windowProps> = props => {
                     <button onClick={props.closeFunction}><img src={exitButton} alt="X"/></button>
                 </div>
                 <div className="additionalBar">
-                    {Extra ? (<Extra></Extra>) : (<DefaultExtra></DefaultExtra>)}
+                    {Extra ? (<Extra address={props.title}></Extra>) : (<DefaultExtra></DefaultExtra>)}
                 </div>
             </section>
             <section className="content">

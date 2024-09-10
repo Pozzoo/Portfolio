@@ -3,6 +3,7 @@ import {useState} from "react";
 import folderIcon from '../assets/folderIcon.png'
 import networkIcon from '../assets/networkIcon.png'
 import divider from '../assets/divider.png'
+import TaskBarItem from "./TaskBarItem.tsx";
 
 const TaskBar = () => {
     const [time, setTime] = useState(updateTime);
@@ -14,20 +15,12 @@ const TaskBar = () => {
     return(
         <div className="upper-bar">
             <div className="upper-left">
-                <button>Start</button>
+                <TaskBarItem title="Start" />
+
                 <img className="divider" src={divider} alt=""/>
-                <button>
-                    <div>
-                        <img src={folderIcon} alt=""/>
-                        Projects
-                    </div>
-                </button>
-                <button>
-                    <div>
-                        <img src={networkIcon} alt=""/>
-                        Contact
-                    </div>
-                </button>
+
+                <TaskBarItem title="Projects" imgUrl={folderIcon} />
+                <TaskBarItem title="Contact" imgUrl={networkIcon} />
             </div>
 
             <div className='upper-right'>

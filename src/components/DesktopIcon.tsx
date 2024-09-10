@@ -2,10 +2,16 @@ import React, {ReactNode, useEffect, useRef, useState} from "react";
 import '../css/DesktopIcon.css'
 import Window from "./Window.tsx";
 
+
 type iconProps = {
     imgUrl: string,
     iconTitle: string,
     children: ReactNode
+    windowExtra?: React.FC | React.FC<AddressBarProps>,
+}
+
+type AddressBarProps = {
+    address: string,
 }
 
 const DesktopIcon: React.FC<iconProps> = props => {
@@ -30,7 +36,7 @@ const DesktopIcon: React.FC<iconProps> = props => {
     }
 
 
-    return(
+    return (
         <>
             <div ref={containerRef} className="icon-container">
                 <img src={props.imgUrl} alt=""/>
@@ -38,10 +44,11 @@ const DesktopIcon: React.FC<iconProps> = props => {
             </div>
 
             {clicked ?
-                <Window closeFunction={closeWindow} title={props.iconTitle} iconUrl={props.imgUrl}>
+                <Window extra={props.windowExtra} closeFunction={closeWindow} title={props.iconTitle}
+                        iconUrl={props.imgUrl}>
                     {props.children}
                 </Window>
-            : null}
+                : null}
         </>
     );
 }

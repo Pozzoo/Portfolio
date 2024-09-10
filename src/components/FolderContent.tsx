@@ -6,18 +6,20 @@ import '../css/FolderContent.css'
 
 type folderProps = {
     title: string,
+    description?: string,
+    imgUrl?: string,
 }
 
 const FolderContent: React.FC<folderProps> = props => {
     return(
         <div className="folder-wrapper">
             <div className="folder-decoration">
-                <img className="icon" src={closedFolderIcon} alt=""/>
+                <img className="icon" src={props.imgUrl ? props.imgUrl : closedFolderIcon} alt=""/>
                 <h1>{props.title}</h1>
 
                 <img className='bar' src={rygbBar} alt=""/>
 
-                <p>Select an item to view its description</p>
+                <p>{props.description ? props.description : "Select an item to view its description"}</p>
             </div>
             <div className="folder-content">
 

@@ -7,8 +7,10 @@ import FolderContent from "./components/FolderContent.tsx";
 
 import notepadIcon from './assets/notepadIcon.png'
 import folderIcon from './assets/folderIcon.png'
+import networkIcon from './assets/networkIcon.png'
 import AboutMe from "./pages/aboutMe.tsx";
 import KnownTechnologies from "./pages/knownTechnologies.tsx";
+import AddressBar from "./components/AddressBar.tsx";
 
 
 
@@ -32,8 +34,11 @@ function App() {
             <DesktopIcon iconTitle="Known Technologies" imgUrl={notepadIcon}>
                 <KnownTechnologies />
             </DesktopIcon>
-            <DesktopIcon iconTitle="Projects" imgUrl={folderIcon}>
+            <DesktopIcon iconTitle="Projects" imgUrl={folderIcon} windowExtra={AddressBar}>
                 <FolderContent title="Projects" />
+            </DesktopIcon>
+            <DesktopIcon iconTitle="Contact" imgUrl={networkIcon} windowExtra={AddressBar}>
+                <FolderContent title="Contact" imgUrl={networkIcon} description="\\poz98x64 -computer" />
             </DesktopIcon>
         </div>
     </>
