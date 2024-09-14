@@ -3,10 +3,13 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './css/index.css'
 import TaskBar from "./components/TaskBar.tsx";
+import {AuthProvider} from "./context/AuthProvider.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+      <AuthProvider>
+          <App />
+      </AuthProvider>
   </StrictMode>,
 )
 
