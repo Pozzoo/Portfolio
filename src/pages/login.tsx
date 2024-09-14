@@ -1,3 +1,6 @@
+import '../css/login.css'
+import keyWorld from '../assets/keyWorld.png'
+
 import {FormEvent, useContext, useRef, useState} from "react";
 
 import axios from '../api/axios'
@@ -39,27 +42,38 @@ const Login = () => {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username:</label>
-                <input
-                    type="text"
-                    id="username"
-                    ref={userRef}
-                    autoComplete="off"
-                    onChange={(e) => setUser(e.target.value)}
-                    value={user}
-                    required
-                />
+        <div className="login-container">
 
-                <label htmlFor="password">Password:</label>
-                <input
-                    type="password"
-                    id="password"
-                    onChange={(e) => setPwd(e.target.value)}
-                    value={pwd}
-                    required
-                />
+            <p>Type a user name and password to log on to the admin area</p>
+            <form onSubmit={handleSubmit}>
+                <img src={keyWorld} alt=""/>
+
+                <div>
+                    <section>
+                        <label htmlFor="username">Username:</label>
+                        <input
+                            type="text"
+                            id="username"
+                            ref={userRef}
+                            autoComplete="off"
+                            onChange={(e) => setUser(e.target.value)}
+                            value={user}
+                            required
+                        />
+                    </section>
+
+                    <section>
+                        <label htmlFor="password">Password:</label>
+                        <input
+                            type="password"
+                            id="password"
+                            onChange={(e) => setPwd(e.target.value)}
+                            value={pwd}
+                            required
+                        />
+                    </section>
+                </div>
+
                 <button>Sign In</button>
             </form>
         </div>
