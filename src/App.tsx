@@ -8,9 +8,12 @@ import FolderContent from "./components/FolderContent.tsx";
 import notepadIcon from './assets/notepadIcon.png'
 import folderIcon from './assets/folderIcon.png'
 import networkIcon from './assets/networkIcon.png'
+import keyPadlock from './assets/keyPadlock.png'
 import AboutMe from "./pages/aboutMe.tsx";
 import KnownTechnologies from "./pages/knownTechnologies.tsx";
 import AddressBar from "./components/AddressBar.tsx";
+import Login from "./pages/login.tsx";
+import WarningPopup from "./pages/warningPopup.tsx";
 
 
 
@@ -24,7 +27,9 @@ function App() {
   return (
     <>
         <div className="center" style={{display: display}}>
-            <PopupWindow closePopup={closePopup}></PopupWindow>
+            <PopupWindow closePopup={closePopup} title={'Warning'} okButton={true}>
+                <WarningPopup></WarningPopup>
+            </PopupWindow>
         </div>
 
         <div className="desktop-grid">
@@ -39,6 +44,9 @@ function App() {
             </DesktopIcon>
             <DesktopIcon iconTitle="Contact" imgUrl={networkIcon} windowExtra={AddressBar}>
                 <FolderContent title="Contact" imgUrl={networkIcon} description="\\poz98x64 -computer" />
+            </DesktopIcon>
+            <DesktopIcon iconTitle="Login" imgUrl={keyPadlock} isPopup={true}>
+                <Login></Login>
             </DesktopIcon>
         </div>
     </>

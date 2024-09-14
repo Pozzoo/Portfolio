@@ -1,11 +1,12 @@
 import React, {ReactNode, useEffect, useRef, useState} from "react";
 import '../css/DesktopIcon.css'
 import Window from "./Window.tsx";
-
+import PopupWindow from "./PopupWindow.tsx";
 
 type iconProps = {
     imgUrl: string,
     iconTitle: string,
+    isPopup?: boolean,
     children: ReactNode
     windowExtra?: React.FC | React.FC<AddressBarProps>,
 }
@@ -18,6 +19,18 @@ const DesktopIcon: React.FC<iconProps> = props => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [clicked, setClicked] = useState<boolean>(false);
 
+    let content;
+
+    if (props.isPopup) {
+        content = <PopupWindow closePopup={closeWindow} title={props.iconTitle} okButton={false}>
+                    {props.children}
+                  </PopupWindow>
+    } else {
+        content = <Window extra={props.windowExtra} closeFunction={closeWindow} title={props.iconTitle} iconUrl={props.imgUrl}>
+                    {props.children}
+                  </Window>
+    }
+
     useEffect(() => {
         if (!containerRef.current) return
 
@@ -28,8 +41,7 @@ const DesktopIcon: React.FC<iconProps> = props => {
         }
 
         container.addEventListener("click", onClick);
-
-    })
+    }, [])
 
     function closeWindow() {
         setClicked(false);
@@ -43,12 +55,7 @@ const DesktopIcon: React.FC<iconProps> = props => {
                 <p>{props.iconTitle}</p>
             </div>
 
-            {clicked ?
-                <Window extra={props.windowExtra} closeFunction={closeWindow} title={props.iconTitle}
-                        iconUrl={props.imgUrl}>
-                    {props.children}
-                </Window>
-                : null}
+            {clicked ? content : null}
         </>
     );
 }
