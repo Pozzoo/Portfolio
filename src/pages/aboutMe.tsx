@@ -1,4 +1,5 @@
 import '../css/TextContent.css'
+import PozzooGBC from '../assets/PozzooGBC.png'
 
 const aboutMe = () => {
 
@@ -17,7 +18,7 @@ const aboutMe = () => {
                 </div>
 
                 <div className="image-wrapper">
-                    <img height={256} src="src/assets/PozzooGBC.png" alt="A photo of me!"/>
+                    <img height={256} src={PozzooGBC} alt="A photo of me!"/>
                     <p>This is me! (on a GameBoy camera)</p>
                 </div>
             </div>
