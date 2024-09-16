@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ReactNode} from "react";
 
 import closedFolderIcon from '../assets/closedFolderIcon.png'
 import rygbBar from '../assets/RYGB Bar.png'
@@ -8,6 +8,7 @@ type folderProps = {
     title: string,
     description?: string,
     imgUrl?: string,
+    children?: ReactNode
 }
 
 const FolderContent: React.FC<folderProps> = props => {
@@ -22,7 +23,7 @@ const FolderContent: React.FC<folderProps> = props => {
                 <p>{props.description ? props.description : "Select an item to view its description"}</p>
             </div>
             <div className="folder-content">
-
+                {props.children}
             </div>
         </div>
     );

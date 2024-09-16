@@ -1,0 +1,14 @@
+.folder-icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        height: 64px;
+    }
+}
+
+.folder-icon-container:hover {
+    cursor: pointer;
+}

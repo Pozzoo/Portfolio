@@ -18,8 +18,6 @@ const Login = () => {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        console.log(JSON.stringify({ account: user, password: pwd }));
-
         try {
             const response = await axios.post('/auth/authenticate',
                 JSON.stringify({ username: user, password: pwd }),
