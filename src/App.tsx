@@ -63,7 +63,7 @@ function App() {
             </DesktopIcon>
             <DesktopIcon iconTitle="Projects" imgUrl={folderIcon} windowExtra={AddressBar}>
                 <FolderContent title="Projects">
-                    {projects.map((project: ProjectModel, index: number) => (
+                    {projects?.map((project: ProjectModel, index: number) => (
                         <FolderIcon key={index} title={project.title} image={project.image} description={project.description} />
                     ))}
                 </FolderContent>
