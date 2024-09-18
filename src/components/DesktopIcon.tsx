@@ -24,7 +24,7 @@ const DesktopIcon: React.FC<iconProps> = props => {
     let content: ReactNode;
 
     if (props.isPopup) {
-        content = <PopupWindow closePopup={closeWindow} title={props.iconTitle} okButton={false} >;
+        content = <PopupWindow closePopup={closeWindow} title={props.iconTitle} okButton={false}>
                     {props.children}
                   </PopupWindow>
     } else {
