@@ -41,7 +41,6 @@ const Login = () => {
 
     return (
         <div className="login-container">
-
             <p>Type a user name and password to log on to the admin area</p>
             <form onSubmit={handleSubmit}>
                 <img src={keyWorld} alt=""/>
