@@ -1,5 +1,5 @@
 import './css/App.css'
-import React, {useEffect} from "react";
+import React, {ReactNode, useEffect} from "react";
 
 import axios from "./api/axios.ts"
 
@@ -24,11 +24,45 @@ import {ProjectModel} from "./models/project-model.tsx";
 
 
 function App() {
+    let windowIndex = 0;
+
+    type windowData = {
+        id: number,
+        content: ReactNode;
+    }
+
     const [display, setDisplay] = React.useState("flex");
     const [projects, setProjects] = React.useState([]);
+    const [renderOrder, setRenderOrder] = React.useState<windowData[]>([]);
 
     function closePopup() {
         setDisplay("none");
+    }
+
+    const addWindow = (window: ReactNode) => {
+        const id = windowIndex;
+        windowIndex++;
+
+        setRenderOrder(prev => [...prev, {id, content: window}]);
+
+        return id;
+    }
+
+    const removeWindow = (id: number) => {
+        setRenderOrder(prev => prev.filter(window => window.id !== id));
+    }
+
+    const changeWindowOrder = (id: number) => {
+        setRenderOrder(prevRenderOrder => {
+            const currentIndex = prevRenderOrder.findIndex(window => window.id === id);
+
+            const updatedRenderOrder = [...prevRenderOrder];
+            const [removedWindow] = updatedRenderOrder.splice(currentIndex, 1);
+
+            updatedRenderOrder.splice(renderOrder.length - 1, 0, removedWindow);
+
+            return updatedRenderOrder;
+        });
     }
 
     const getProjects = async () => {
@@ -54,26 +88,36 @@ function App() {
             </PopupWindow>
         </div>
 
+        {renderOrder.map((window) => (
+            <div key={window.id} onMouseDown={() => changeWindowOrder(window.id)} >
+                {window.content}
+            </div>
+        ))}
+
         <div className="desktop-grid">
-            <DesktopIcon iconTitle="About Me" imgUrl={notepadIcon}>
+            <DesktopIcon iconTitle="About Me" imgUrl={notepadIcon} addWindow={addWindow} removeWindow={removeWindow}>
                 <AboutMe />
             </DesktopIcon>
-            <DesktopIcon iconTitle="Known Technologies" imgUrl={notepadIcon}>
+
+            <DesktopIcon iconTitle="Known Technologies" imgUrl={notepadIcon} addWindow={addWindow} removeWindow={removeWindow} >
                 <KnownTechnologies />
             </DesktopIcon>
-            <DesktopIcon iconTitle="Projects" imgUrl={folderIcon} windowExtra={AddressBar}>
+
+            <DesktopIcon iconTitle="Projects" imgUrl={folderIcon} windowExtra={AddressBar} addWindow={addWindow} removeWindow={removeWindow}>
                 <FolderContent title="Projects">
                     {projects?.map((project: ProjectModel, index: number) => (
                         <FolderIcon key={index} title={project.title} image={project.image} description={project.description} />
                     ))}
                 </FolderContent>
             </DesktopIcon>
-            <DesktopIcon iconTitle="Contact" imgUrl={networkIcon} windowExtra={AddressBar}>
+
+            <DesktopIcon iconTitle="Contact" imgUrl={networkIcon} windowExtra={AddressBar} addWindow={addWindow} removeWindow={removeWindow}>
                 <FolderContent title="Contact" imgUrl={networkIcon} description="\\poz98x64 -computer" >
                     <FolderIcon title="Email me!" image={envelopeOpenIcon} />
                 </FolderContent>
             </DesktopIcon>
-            <DesktopIcon iconTitle="Login" imgUrl={keyPadlock} isPopup={true}>
+
+            <DesktopIcon iconTitle="Login" imgUrl={keyPadlock} isPopup={true} addWindow={addWindow} removeWindow={removeWindow}>
                 <Login></Login>
             </DesktopIcon>
         </div>

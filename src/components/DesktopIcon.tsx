@@ -1,4 +1,4 @@
-import React, {ReactNode, useEffect, useRef, useState} from "react";
+import React, {ReactNode, useEffect, useRef} from "react";
 import '../css/DesktopIcon.css'
 import Window from "./Window.tsx";
 import PopupWindow from "./PopupWindow.tsx";
@@ -6,6 +6,8 @@ import PopupWindow from "./PopupWindow.tsx";
 type iconProps = {
     imgUrl: string,
     iconTitle: string,
+    addWindow: (window: ReactNode) => number,
+    removeWindow: (windowId: number) => void,
     isPopup?: boolean,
     children: ReactNode
     windowExtra?: React.FC | React.FC<AddressBarProps>,
@@ -17,12 +19,12 @@ type AddressBarProps = {
 
 const DesktopIcon: React.FC<iconProps> = props => {
     const containerRef = useRef<HTMLDivElement>(null);
-    const [clicked, setClicked] = useState<boolean>(false);
+    const windowIdRef = useRef<number>(-1);
 
-    let content;
+    let content: ReactNode;
 
     if (props.isPopup) {
-        content = <PopupWindow closePopup={closeWindow} title={props.iconTitle} okButton={false}>
+        content = <PopupWindow closePopup={closeWindow} title={props.iconTitle} okButton={false} >;
                     {props.children}
                   </PopupWindow>
     } else {
@@ -31,20 +33,27 @@ const DesktopIcon: React.FC<iconProps> = props => {
                   </Window>
     }
 
+    const onClick = (e: MouseEvent) => {
+        if (windowIdRef.current !== -1) return;
+
+        e.stopPropagation();
+        e.preventDefault();
+
+        windowIdRef.current = props.addWindow(content);
+    }
+
     useEffect(() => {
         if (!containerRef.current) return
 
         const container = containerRef.current;
 
-        const onClick = () => {
-            setClicked(true);
-        }
-
         container.addEventListener("click", onClick);
     }, [])
 
     function closeWindow() {
-        setClicked(false);
+        props.removeWindow(windowIdRef.current);
+
+        windowIdRef.current = -1;
     }
 
 
@@ -54,8 +63,6 @@ const DesktopIcon: React.FC<iconProps> = props => {
                 <img src={props.imgUrl} alt=""/>
                 <p>{props.iconTitle}</p>
             </div>
-
-            {clicked ? content : null}
         </>
     );
 }
