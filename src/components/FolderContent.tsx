@@ -8,7 +8,7 @@ type folderProps = {
     title: string,
     description?: string,
     imgUrl?: string,
-    children?: ReactNode
+    children: ReactNode
 }
 
 const FolderContent: React.FC<folderProps> = props => {

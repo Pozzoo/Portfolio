@@ -1,5 +1,5 @@
 import './css/App.css'
-import React, {ReactNode, useEffect} from "react";
+import {ReactNode, useEffect, useState} from "react";
 
 import axios from "./api/axios.ts"
 
@@ -22,7 +22,6 @@ import FolderIcon from "./components/FolderIcon.tsx";
 import {ProjectModel} from "./models/project-model.tsx";
 
 
-
 function App() {
     let windowIndex = 0;
 
@@ -31,9 +30,23 @@ function App() {
         content: ReactNode;
     }
 
-    const [display, setDisplay] = React.useState("flex");
-    const [projects, setProjects] = React.useState([]);
-    const [renderOrder, setRenderOrder] = React.useState<windowData[]>([]);
+    const [display, setDisplay] = useState("flex");
+    const [projects, setProjects] = useState<[]>([]);
+    const [renderOrder, setRenderOrder] = useState<windowData[]>([]);
+
+    const getProjects = async () => {
+        try {
+            const response = await axios.get('/project/all');
+            return response?.data.projects;
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        getProjects().then(res => setProjects(res));
+    }, []);
 
     function closePopup() {
         setDisplay("none");
@@ -65,21 +78,6 @@ function App() {
         });
     }
 
-    const getProjects = async () => {
-        try {
-            const response = await axios.get('/project/all');
-
-            return response?.data.projects;
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    useEffect(() => {
-        getProjects().then(r => setProjects(r));
-    }, []);
-
   return (
     <>
         <div className="center" style={{display: display}}>
@@ -105,8 +103,13 @@ function App() {
 
             <DesktopIcon iconTitle="Projects" imgUrl={folderIcon} windowExtra={AddressBar} addWindow={addWindow} removeWindow={removeWindow}>
                 <FolderContent title="Projects">
-                    {projects?.map((project: ProjectModel, index: number) => (
-                        <FolderIcon key={index} title={project.title} image={project.image} description={project.description} />
+                    {projects.map((project: ProjectModel) => (
+                        <FolderIcon
+                            key={project.id}
+                            title={project.title}
+                            image={project.image}
+                            description={project.description}
+                        />
                     ))}
                 </FolderContent>
             </DesktopIcon>
