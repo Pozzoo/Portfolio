@@ -9,6 +9,7 @@ type windowProps = {
     title: string,
     iconUrl?: string,
     extra?: React.FC | React.FC<AddressBarProps>,
+    extraAddress?: string,
     children: ReactNode
 }
 
@@ -34,7 +35,7 @@ const Window: React.FC<windowProps> = props => {
                         <button onClick={removeWindow}><img src={exitButton} alt="X"/></button>
                     </div>
                     <div className="additionalBar">
-                        {Extra ? (<Extra address={props.title}></Extra>) : (<DefaultExtra></DefaultExtra>)}
+                        {Extra ? (<Extra address={props.extraAddress ? props.extraAddress : props.title}></Extra>) : (<DefaultExtra></DefaultExtra>)}
                     </div>
                 </section>
                 <section className="content">

@@ -9,9 +9,7 @@ import FolderContent from "./components/FolderContent.tsx";
 
 import notepadIcon from './assets/notepadIcon.png'
 import folderIcon from './assets/folderIcon.png'
-import networkIcon from './assets/networkIcon.png'
 import keyPadlock from './assets/keyPadlock.png'
-import envelopeOpenIcon from './assets/envelopeOpenIcon.png'
 
 import AboutMe from "./pages/aboutMe.tsx";
 import KnownTechnologies from "./pages/knownTechnologies.tsx";
@@ -21,6 +19,7 @@ import WarningPopup from "./pages/warningPopup.tsx";
 import FolderIcon from "./components/FolderIcon.tsx";
 import {ProjectModel} from "./models/project-model.tsx";
 import useRenderOrder from "./hooks/useRenderOrder.ts";
+import ProjectWindow from "./pages/projectWindow.tsx";
 
 
 function App() {
@@ -72,21 +71,14 @@ function App() {
             <DesktopIcon iconTitle="Projects" imgUrl={folderIcon} windowExtra={AddressBar}>
                 <FolderContent title="Projects">
                     {projects.map((project: ProjectModel) => (
-                        <FolderIcon
-                            key={project.id}
-                            title={project.title}
-                            image={project.image}
-                            description={project.description}
-                        />
+                        <FolderIcon key={project.id} title={project.title} image={project.image}>
+                            <ProjectWindow project={project}></ProjectWindow>
+                        </FolderIcon>
                     ))}
                 </FolderContent>
             </DesktopIcon>
 
-            <DesktopIcon iconTitle="Contact" imgUrl={networkIcon}>
-                <FolderContent title="Contact" imgUrl={networkIcon} description="\\poz98x64 -computer" >
-                    <FolderIcon title="Email me!" image={envelopeOpenIcon} />
-                </FolderContent>
-            </DesktopIcon>
+            {/*TODO: ADD CONTACT ME ICON/PAGE*/}
 
             <DesktopIcon iconTitle="Login" imgUrl={keyPadlock} isPopup={true}>
                 <Login></Login>

@@ -3,9 +3,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: fit-content;
 
     img {
         height: 64px;
+    }
+
+    p {
+        text-align: center;
+        font-size: small;
+        margin: 0 5px;
     }
 }
 

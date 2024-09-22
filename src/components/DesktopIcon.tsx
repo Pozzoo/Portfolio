@@ -18,7 +18,6 @@ type AddressBarProps = {
 
 const DesktopIcon: React.FC<iconProps> = props => {
     const containerRef = useRef<HTMLDivElement>(null);
-    const windowIdRef = useRef<number>(-1);
     const contentRef = useRef<ReactNode>(null);
     const {addWindow, removeWindow} = useRenderOrder();
 
@@ -27,18 +26,16 @@ const DesktopIcon: React.FC<iconProps> = props => {
             {props.children}
         </PopupWindow>;
     } else {
-        contentRef.current = <Window extra={props.windowExtra} closeFunction={closeWindow} title={props.iconTitle} iconUrl={props.imgUrl}>
+        contentRef.current = <Window extra={props.windowExtra} title={props.iconTitle} iconUrl={props.imgUrl}>
             {props.children}
         </Window>
     }
 
     const onClick = (e: MouseEvent) => {
-        if (windowIdRef.current !== -1) return;
-
         e.stopPropagation();
         e.preventDefault();
 
-        windowIdRef.current = addWindow(contentRef.current);
+        addWindow(contentRef.current);
     }
 
     useEffect(() => {
@@ -51,8 +48,6 @@ const DesktopIcon: React.FC<iconProps> = props => {
 
     function closeWindow() {
         removeWindow();
-
-        windowIdRef.current = -1;
     }
 
     return (
