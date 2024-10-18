@@ -12,7 +12,7 @@ type folderProps = {
 }
 
 const FolderContent: React.FC<folderProps> = props => {
-    return(
+    return (
         <div className="folder-wrapper">
             <div className="folder-decoration">
                 <img className="icon" src={props.imgUrl ? props.imgUrl : closedFolderIcon} alt=""/>

@@ -3,23 +3,20 @@ import React, {ReactNode, useRef} from "react"
 import DefaultExtra from './DefaultExtra'
 import exitButton from '../assets/exitButton.png'
 import DraggableComponent from "./DraggableComponent.tsx";
+import useRenderOrder from "../hooks/useRenderOrder.ts";
 
 type windowProps = {
-    closeFunction: () => void,
     title: string,
     iconUrl?: string,
-    extra?: React.FC | React.FC<AddressBarProps>,
+    extra?: ReactNode,
+    extraAddress?: string,
     children: ReactNode
 }
 
-type AddressBarProps = {
-    address: string
-}
-
 const Window: React.FC<windowProps> = props => {
+    const {removeWindow} = useRenderOrder();
 
     const upperBarRef = useRef<HTMLDivElement>(null);
-    const Extra: React.FC | React.FC<AddressBarProps> | undefined = props.extra;
 
     return (
         <DraggableComponent dragPointRef={upperBarRef}>
@@ -30,10 +27,10 @@ const Window: React.FC<windowProps> = props => {
                             <img src={props.iconUrl} alt=""/>
                             <p>{props.title}</p>
                         </div>
-                        <button onClick={props.closeFunction}><img src={exitButton} alt="X"/></button>
+                        <button onClick={removeWindow}><img src={exitButton} alt="X"/></button>
                     </div>
                     <div className="additionalBar">
-                        {Extra ? (<Extra address={props.title}></Extra>) : (<DefaultExtra></DefaultExtra>)}
+                        {props.extra ? (props.extra) : (<DefaultExtra></DefaultExtra>)}
                     </div>
                 </section>
                 <section className="content">

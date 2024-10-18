@@ -2,43 +2,36 @@ import React, {ReactNode, useEffect, useRef} from "react";
 import '../css/DesktopIcon.css'
 import Window from "./Window.tsx";
 import PopupWindow from "./PopupWindow.tsx";
+import useRenderOrder from "../hooks/useRenderOrder.ts";
 
 type iconProps = {
     imgUrl: string,
     iconTitle: string,
-    addWindow: (window: ReactNode) => number,
-    removeWindow: (windowId: number) => void,
     isPopup?: boolean,
+    windowExtras?: ReactNode,
     children: ReactNode
-    windowExtra?: React.FC | React.FC<AddressBarProps>,
-}
-
-type AddressBarProps = {
-    address: string,
 }
 
 const DesktopIcon: React.FC<iconProps> = props => {
     const containerRef = useRef<HTMLDivElement>(null);
-    const windowIdRef = useRef<number>(-1);
     const contentRef = useRef<ReactNode>(null);
+    const {addWindow, removeWindow} = useRenderOrder();
 
     if (props.isPopup) {
         contentRef.current = <PopupWindow closePopup={closeWindow} title={props.iconTitle} okButton={false}>
             {props.children}
         </PopupWindow>;
     } else {
-        contentRef.current = <Window extra={props.windowExtra} closeFunction={closeWindow} title={props.iconTitle} iconUrl={props.imgUrl}>
+       contentRef.current = <Window title={props.iconTitle} extra={props.windowExtras} iconUrl={props.imgUrl}>
             {props.children}
         </Window>
     }
 
     const onClick = (e: MouseEvent) => {
-        if (windowIdRef.current !== -1) return;
-
         e.stopPropagation();
         e.preventDefault();
 
-        windowIdRef.current = props.addWindow(contentRef.current);
+        addWindow(contentRef.current);
     }
 
     useEffect(() => {
@@ -50,9 +43,7 @@ const DesktopIcon: React.FC<iconProps> = props => {
     }, [])
 
     function closeWindow() {
-        props.removeWindow(windowIdRef.current);
-
-        windowIdRef.current = -1;
+        removeWindow();
     }
 
     return (
