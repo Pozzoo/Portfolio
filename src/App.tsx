@@ -75,6 +75,7 @@ function App() {
                         <FolderIcon key={project.id} title={project.title} image={project.image}>
                             <ProjectWindow project={project}></ProjectWindow>
                         </FolderIcon>
+
                     ))}
                 </FolderContent>
             </DesktopIcon>
