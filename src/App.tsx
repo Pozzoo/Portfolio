@@ -103,7 +103,7 @@ function App() {
 
             <DesktopIcon iconTitle="Projects" imgUrl={folderIcon} windowExtra={AddressBar} addWindow={addWindow} removeWindow={removeWindow}>
                 <FolderContent title="Projects">
-                    {projects.map((project: ProjectModel) => (
+                    {projects?.map((project: ProjectModel) => (
                         <FolderIcon
                             key={project.id}
                             title={project.title}
