@@ -21,7 +21,7 @@ const ProjectWindow: React.FC<ProjectWindowProps> = props => {
                 <section className="content-left">
                     <img src={image} alt=""/>
                     <h2>{title}</h2>
-                    <h4>Type: {props.project.type}</h4>
+                    <h4>{props.project.type}</h4>
                 </section>
                 <section className="content-right">
                     <p>{props.project.description}</p>
