@@ -1,0 +1,42 @@
+.options-bar {
+    display: flex;
+
+    border: 2px solid white;
+    border-bottom-color: #808080;
+    border-right-color: #808080;
+
+    align-content: center;
+
+    img {
+        height: 34px;
+        width: 3px;
+
+        margin-left: 3px;
+        margin-top: 5px;
+    }
+
+    button {
+        background-color: #c0c0c0;
+        border: none;
+        color: black;
+
+        height: 38px;
+        width: 50px;
+
+        margin: 3px 5px 3px 5px;
+
+        padding: 0;
+
+    }
+
+    button:hover {
+        cursor: pointer;
+
+        border: 2px solid white;
+        border-bottom-color: #808080;
+        border-right-color: #808080;
+
+        padding: 0;
+
+    }
+}

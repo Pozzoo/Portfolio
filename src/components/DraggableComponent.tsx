@@ -42,6 +42,8 @@ const DraggableComponent: React.FC<DraggableComponentProps> = props => {
         }
 
         const onMouseUp = () => {
+            if (!isClicked.current) return;
+
             isClicked.current = false;
 
             coords.current.lastX = window.offsetLeft;
@@ -58,7 +60,6 @@ const DraggableComponent: React.FC<DraggableComponentProps> = props => {
             window.style.left = `${nextX}px`;
         }
 
-        //upperBar.addEventListener('mousedown', onMouseDown);
         dragPoint.addEventListener('mousedown', onMouseDown);
         addEventListener('mousemove', onMouseMove);
         addEventListener('mouseup', onMouseUp);

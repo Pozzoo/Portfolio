@@ -1,8 +1,8 @@
 import React, {createContext, ReactNode, useRef, useState} from "react";
 
 type WindowType = {
-    id: number;
-    content: ReactNode;
+    id: number,
+    content: ReactNode,
 }
 
 type WindowContextType = {
@@ -12,6 +12,8 @@ type WindowContextType = {
     removeWindow: () => void,
     changeWindowOrder: (id: number) => void,
     changeWindowContent: (content: ReactNode) => void;
+    previousWindowContent: () => void;
+    nextWindowContent: () => void,
 }
 
 const WindowContext = createContext<WindowContextType | undefined>(undefined);
@@ -25,12 +27,14 @@ export const WindowProvider: React.FC<WindowProviderProps> = ({ children }) => {
     const selectedWindowId = useRef(-1);
 
     const [renderOrder, setRenderOrder] = useState<WindowType[]>([]);
+    const [prevContent, setPrevContent] = useState<WindowType[]>([]);
+    const [nextContent, setNextContent] = useState<WindowType[]>([]);
 
     const addWindow = (content: ReactNode) => {
         const id = windowIndex.current;
         windowIndex.current++;
 
-        setRenderOrder(prev => [...prev, {id, content}]);
+        setRenderOrder(prev => [...prev, {id, content, left: 0, top: 0}]);
 
         selectedWindowId.current = id;
         return id;
@@ -38,6 +42,8 @@ export const WindowProvider: React.FC<WindowProviderProps> = ({ children }) => {
 
     const removeWindow = () => {
         setRenderOrder(prev => prev.filter(window => window.id !== selectedWindowId.current));
+        setPrevContent(prev => prev.filter(window => window.id !== selectedWindowId.current));
+        setNextContent(prev => prev.filter(window => window.id !== selectedWindowId.current));
     }
 
     const changeWindowOrder = (id: number) => {
@@ -60,14 +66,48 @@ export const WindowProvider: React.FC<WindowProviderProps> = ({ children }) => {
             const currentIndex = prev.findIndex(window => window.id = selectedWindowId.current);
 
             const updatedRenderOrder = [...prev];
+            const [previousWindow] = updatedRenderOrder.splice(currentIndex, 1)
 
-            updatedRenderOrder.splice(currentIndex, 1, {id: selectedWindowId.current, content});
+            setPrevContent(previous => [...previous, previousWindow]);
+
+            updatedRenderOrder.splice(currentIndex, 0, {id: selectedWindowId.current, content});
             return updatedRenderOrder;
         })
     }
 
+    const previousWindowContent = () => {
+        const previousWindow = prevContent.find(window => window.id === selectedWindowId.current);
+
+        if (!previousWindow) return;
+
+        setRenderOrder(prev => {
+            const currentIndex = prev.findIndex(window => window.id = selectedWindowId.current);
+
+            const updatedRenderOrder = [...prev];
+
+            const [currentWindow] = updatedRenderOrder.splice(currentIndex, 1);
+            updatedRenderOrder.splice(currentIndex, 0, {id: selectedWindowId.current, content: previousWindow.content})
+
+            setNextContent(previous => [...previous, currentWindow]);
+
+            return updatedRenderOrder;
+        });
+
+        setPrevContent(prev => prev.filter(window => window.id !== selectedWindowId.current));
+    }
+
+    const nextWindowContent = () => {
+        const nextWindow = nextContent.find(window => window.id === selectedWindowId.current);
+
+        if (!nextWindow) return;
+
+        changeWindowContent(nextWindow.content);
+
+        setNextContent(prev => prev.filter(window => window.id !== selectedWindowId.current));
+    }
+
     return(
-        <WindowContext.Provider value={{renderOrder, setRenderOrder, addWindow, removeWindow, changeWindowOrder, changeWindowContent}}>
+        <WindowContext.Provider value={{renderOrder, setRenderOrder, addWindow, removeWindow, changeWindowOrder, changeWindowContent, previousWindowContent, nextWindowContent}}>
             {children}
         </WindowContext.Provider>
     )

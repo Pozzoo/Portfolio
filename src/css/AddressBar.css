@@ -1,11 +1,15 @@
 .address-bar {
     display: flex;
-    width: 100%;
+    width: 796px;
     height: 30px;
     align-items: center;
 
-    margin: 1px;
+    margin-bottom: 5px;
     color: black;
+
+    border: 2px solid white;
+    border-bottom-color: #808080;
+    border-right-color: #808080;
 
     p {
         margin: 0 10px 0 10px;
@@ -14,6 +18,10 @@
     .address-text {
         display: flex;
         align-items: center;
+
+        img {
+            margin-left: 3px;
+        }
     }
 
     .address {
