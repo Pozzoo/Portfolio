@@ -13,13 +13,14 @@ import keyPadlock from './assets/keyPadlock.png'
 
 import AboutMe from "./pages/aboutMe.tsx";
 import KnownTechnologies from "./pages/knownTechnologies.tsx";
-import AddressBar from "./components/AddressBar.tsx";
 import Login from "./pages/login.tsx";
 import WarningPopup from "./pages/warningPopup.tsx";
 import FolderIcon from "./components/FolderIcon.tsx";
 import {ProjectModel} from "./models/project-model.tsx";
 import useRenderOrder from "./hooks/useRenderOrder.ts";
 import ProjectWindow from "./pages/projectWindow.tsx";
+import OptionsBar from "./components/OptionsBar.tsx";
+import AddressBar from "./components/AddressBar.tsx";
 
 
 function App() {
@@ -68,9 +69,9 @@ function App() {
                 <KnownTechnologies />
             </DesktopIcon>
 
-            <DesktopIcon iconTitle="Projects" imgUrl={folderIcon} windowExtra={AddressBar}>
+            <DesktopIcon iconTitle="Projects" imgUrl={folderIcon} windowExtras={[<OptionsBar/>, <AddressBar address="Projects"/>]}>
                 <FolderContent title="Projects">
-                    {projects.map((project: ProjectModel) => (
+                    {projects?.map((project: ProjectModel) => (
                         <FolderIcon key={project.id} title={project.title} image={project.image}>
                             <ProjectWindow project={project}></ProjectWindow>
                         </FolderIcon>

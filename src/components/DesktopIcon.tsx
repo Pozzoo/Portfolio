@@ -8,12 +8,8 @@ type iconProps = {
     imgUrl: string,
     iconTitle: string,
     isPopup?: boolean,
+    windowExtras?: ReactNode,
     children: ReactNode
-    windowExtra?: React.FC | React.FC<AddressBarProps>,
-}
-
-type AddressBarProps = {
-    address: string,
 }
 
 const DesktopIcon: React.FC<iconProps> = props => {
@@ -26,7 +22,7 @@ const DesktopIcon: React.FC<iconProps> = props => {
             {props.children}
         </PopupWindow>;
     } else {
-        contentRef.current = <Window extra={props.windowExtra} title={props.iconTitle} iconUrl={props.imgUrl}>
+       contentRef.current = <Window title={props.iconTitle} extra={props.windowExtras} iconUrl={props.imgUrl}>
             {props.children}
         </Window>
     }
