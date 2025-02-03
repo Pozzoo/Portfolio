@@ -4,7 +4,7 @@ import DraggableWindow from "../components/window/DraggableWindow.tsx";
 
 type WindowContextType = {
     windows: WindowType[],
-    openWindow: (content: ReactNode, image?: string, title?: string) => void,
+    openWindow: (content: ReactNode, image?: string, title?: string, address?: string) => void,
     closeWindow: (id: number) => void,
     renderWindows: React.FC,
     addContent: (content: ReactNode, id: number) => void,
@@ -29,7 +29,7 @@ export const WindowProvider: React.FC<WindowProviderProps> = ({ children }) => {
         )
     }
 
-    const openWindow = (content: ReactNode, image?: string, title?: string) => {
+    const openWindow = (content: ReactNode, image?: string, title?: string, address?: string) => {
         let newID = 0
 
         do {
@@ -42,7 +42,8 @@ export const WindowProvider: React.FC<WindowProviderProps> = ({ children }) => {
             contentID: 0,
             image: image,
             title: title,
-            renderID: 1
+            renderID: 1,
+            address: address,
         }
 
         const updatedIndexes: WindowType[] = windows.map(window => ({

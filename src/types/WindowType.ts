@@ -7,4 +7,5 @@ export type WindowType = {
     renderID: number,
     image?: string,
     title?: string,
+    address?: string,
 }

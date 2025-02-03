@@ -13,7 +13,7 @@ const DraggableWindow = ({ window, handleWindowClick }: Props) => {
 
     return (
         <Draggable dragPointRef={dragDivRef} windowID={window.id} >
-            <Window onClick={() => handleWindowClick(window.id)} dragDivRef={dragDivRef} windowID={window.id} windowImg={window.image} windowTitle={window.title} >
+            <Window onClick={() => handleWindowClick(window.id)} dragDivRef={dragDivRef} windowID={window.id} windowImg={window.image} windowTitle={window.title} address={window.address} >
                 {window.content[window.contentID]}
             </Window>
         </Draggable>

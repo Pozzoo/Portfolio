@@ -1,5 +1,6 @@
 import {Key, ReactNode, RefObject} from "react";
 import WindowTopBar from "./WindowTopBar.tsx";
+import WindowExtras from "./WindowExtras.tsx";
 
 interface Props {
     dragDivRef: RefObject<HTMLDivElement>,
@@ -9,12 +10,15 @@ interface Props {
     children?: ReactNode,
     windowImg?: string,
     windowTitle?: string,
+    address?: string
 }
 
-const Window = ({ onClick, key, children, dragDivRef, windowImg, windowID, windowTitle }: Props) => {
+const Window = ({ onClick, key, children, dragDivRef, windowImg, windowID, windowTitle, address }: Props) => {
     return (
         <div key={key} className="flex flex-col h-[600px] w-[800px] p-1 bg-win-light-gray" onMouseDown={onClick}>
             <WindowTopBar imgSrc={windowImg} dragDivRef={dragDivRef} windowID={windowID} title={windowTitle}/>
+
+            <WindowExtras optionsBar functionsBar address={address} />
 
             {children}
 
