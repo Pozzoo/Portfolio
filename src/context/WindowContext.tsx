@@ -1,14 +1,10 @@
 import React, {createContext, ReactNode, useState} from "react";
-
-type WindowType = {
-    id: number,
-    content: ReactNode[],
-    contentID: number,
-}
+import {WindowType} from "../types/WindowType.ts";
+import DraggableWindow from "../components/window/DraggableWindow.tsx";
 
 type WindowContextType = {
     windows: WindowType[],
-    openWindow: (content: ReactNode) => void,
+    openWindow: (content: ReactNode, image?: string, title?: string) => void,
     closeWindow: (id: number) => void,
     renderWindows: React.FC,
     addContent: (content: ReactNode, id: number) => void,
@@ -28,28 +24,35 @@ export const WindowProvider: React.FC<WindowProviderProps> = ({ children }) => {
     const renderWindows: React.FC = () => {
         return (
             windows.map((window) => (
-                <div key={window.id} onClick={() => handleWindowClick(window.id)}>
-                    {window.content[window.contentID]}
-                </div>
+                <DraggableWindow window={window} key={window.id} handleWindowClick={handleWindowClick} />
             ))
         )
     }
 
-    const openWindow = (content: ReactNode) => {
+    const openWindow = (content: ReactNode, image?: string, title?: string) => {
+        let newID = 0
+
+        do {
+          newID = parseInt((Math.random() * 1000000).toString());
+        } while (windows.some(window => window.id === newID));
+
         const newWindow: WindowType = {
-            id: 1,
+            id: newID,
             content: [content],
             contentID: 0,
+            image: image,
+            title: title,
+            renderID: 1
         }
 
         const updatedIndexes: WindowType[] = windows.map(window => ({
             ...window,
-            id: window.id + 1
+            renderID: window.renderID + 1
         }));
 
         updatedIndexes.unshift(newWindow);
 
-        setWindows(updatedIndexes.sort((a, b) => a.id - b.id));
+        setWindows(updatedIndexes.sort((a, b) => b.renderID - a.renderID));
     }
 
     const closeWindow = (id: number) => {
@@ -104,10 +107,10 @@ export const WindowProvider: React.FC<WindowProviderProps> = ({ children }) => {
     const handleWindowClick = (id: number) => {
         const updatedIndexes: WindowType[] = windows.map(window => ({
             ...window,
-            id: (window.id === id ? 1 : window.id),
+            renderID: (window.id === id ? 1 : window.renderID + 1),
         }));
 
-        setWindows(updatedIndexes.sort((a, b) => a.id - b.id));
+        setWindows(updatedIndexes.sort((a, b) => b.renderID - a.renderID));
     }
 
     return(
