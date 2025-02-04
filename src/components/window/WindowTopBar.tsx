@@ -20,7 +20,7 @@ const WindowTopBar = ({ dragDivRef, title, imgSrc, windowID }: Props) => {
                 <p className="w-fit h-fit text-white text-center text-lg">{title}</p>
             </div>
 
-            <div className="group relative h-[28px] w-[28px] flex align-center justify-center bg-win-light-gray" onClick={() => windowManager.closeWindow(windowID)}>
+            <div className="group relative h-[28px] w-[28px] flex align-center justify-center bg-win-light-gray cursor-pointer" onClick={() => windowManager.closeWindow(windowID)}>
                 <div className="absolute inset-0 border-t-1 border-l-1 border-white group-active:border-black group-active:border-t-2 group-active:border-l-2 "/>
                 <div className="absolute inset-0 border-b-1 border-r-1 border-black group-active:border-white group-active:border-b-2 group-active:border-r-2 "/>
 

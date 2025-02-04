@@ -1,5 +1,6 @@
 import DesktopIcon from "./DesktopIcon.tsx";
 import useWindow from "../hooks/useWindow.ts";
+import FolderContent from "./contents/FolderContent.tsx";
 
 const Desktop = () => {
     const windowManager = useWindow();
@@ -14,7 +15,7 @@ const Desktop = () => {
             }
 
             <div className="h-[90%] w-fit flex flex-col flex-wrap items-start justify-start z-10">
-                <DesktopIcon title="About Me" content={<p>test</p>} address={'/desktop/About Me/'}/>
+                <DesktopIcon title="Projects" content={<FolderContent title="Projects"/>} address={'/desktop/Projects/'}/>
                 <DesktopIcon title="About Me"/>
                 <DesktopIcon title="About Me"/>
                 <DesktopIcon title="About Me"/>

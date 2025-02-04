@@ -1,13 +1,14 @@
-import React, {createContext, ReactNode, useState} from "react";
+import React, {createContext, ReactNode, useRef, useState} from "react";
 import {WindowType} from "../types/WindowType.ts";
 import DraggableWindow from "../components/window/DraggableWindow.tsx";
 
 type WindowContextType = {
     windows: WindowType[],
-    openWindow: (content: ReactNode, image?: string, title?: string, address?: string) => void,
+    openWindow: (content: ReactNode, image?: string, title?: string, address?: string, optionsBar?: boolean, functionsBar?: boolean) => void,
     closeWindow: (id: number) => void,
     renderWindows: React.FC,
     addContent: (content: ReactNode, id: number) => void,
+    addContentWithoutID: (content: ReactNode) => void,
     nextContent: (id: number) => void,
     prevContent: (id: number) => void,
 }
@@ -20,6 +21,7 @@ type WindowProviderProps = {
 
 export const WindowProvider: React.FC<WindowProviderProps> = ({ children }) => {
     const [windows, setWindows] = useState<WindowType[]>([]);
+    const lastIDRef = useRef(0);
 
     const renderWindows: React.FC = () => {
         return (
@@ -29,7 +31,7 @@ export const WindowProvider: React.FC<WindowProviderProps> = ({ children }) => {
         )
     }
 
-    const openWindow = (content: ReactNode, image?: string, title?: string, address?: string) => {
+    const openWindow = (content: ReactNode, image?: string, title?: string, address?: string, optionsBar?: boolean, functionsBar?: boolean) => {
         let newID = 0
 
         do {
@@ -44,6 +46,8 @@ export const WindowProvider: React.FC<WindowProviderProps> = ({ children }) => {
             title: title,
             renderID: 1,
             address: address,
+            optionsBar: optionsBar,
+            functionsBar: functionsBar,
         }
 
         const updatedIndexes: WindowType[] = windows.map(window => ({
@@ -61,13 +65,29 @@ export const WindowProvider: React.FC<WindowProviderProps> = ({ children }) => {
     }
 
     const addContent = (content: ReactNode, id: number) => {
+        const handleArray = (contentArray: ReactNode[], newContent: ReactNode, contentID: number) => {
+            if (contentID === (contentArray.length - 1)) {
+                return [...contentArray, newContent];
+            }
+
+            const newArray = contentArray.slice(0, contentID);
+
+            return [...newArray, newContent];
+        }
+
         const updatedContents: WindowType[] = windows.map(window => ({
             ...window,
-            content: window.id === id ? [...window.content, content] : window.content,
-            contentID: window.id === id ? window.contentID + 1 : window.contentID,
+            content: window.id === id ? (handleArray(window.content, content, window.contentID)) : window.content,
+            contentID: window.id === id ? window.content.length - 1 : window.contentID,
         }));
 
         setWindows(updatedContents);
+    }
+
+    const addContentWithoutID = (content: ReactNode) => {
+        if (lastIDRef.current === 0) return;
+
+        addContent(content, lastIDRef.current);
     }
 
     const nextContent = (id: number) => {
@@ -106,6 +126,8 @@ export const WindowProvider: React.FC<WindowProviderProps> = ({ children }) => {
 
 
     const handleWindowClick = (id: number) => {
+        lastIDRef.current = id;
+
         const updatedIndexes: WindowType[] = windows.map(window => ({
             ...window,
             renderID: (window.id === id ? 1 : window.renderID + 1),
@@ -115,7 +137,7 @@ export const WindowProvider: React.FC<WindowProviderProps> = ({ children }) => {
     }
 
     return(
-        <WindowContext.Provider value={{windows, openWindow, closeWindow, renderWindows, addContent, nextContent, prevContent}}>
+        <WindowContext.Provider value={{windows, openWindow, closeWindow, renderWindows, addContent, addContentWithoutID, nextContent, prevContent}}>
             {children}
         </WindowContext.Provider>
     )

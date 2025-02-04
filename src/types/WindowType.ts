@@ -8,4 +8,6 @@ export type WindowType = {
     image?: string,
     title?: string,
     address?: string,
+    optionsBar?: boolean,
+    functionsBar?: boolean,
 }

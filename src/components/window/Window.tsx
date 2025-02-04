@@ -1,24 +1,22 @@
 import {Key, ReactNode, RefObject} from "react";
 import WindowTopBar from "./WindowTopBar.tsx";
 import WindowExtras from "./WindowExtras.tsx";
+import {WindowType} from "../../types/WindowType.ts";
 
 interface Props {
     dragDivRef: RefObject<HTMLDivElement>,
-    windowID: number,
+    window: WindowType,
     onClick: () => void,
     key?: Key,
     children?: ReactNode,
-    windowImg?: string,
-    windowTitle?: string,
-    address?: string
 }
 
-const Window = ({ onClick, key, children, dragDivRef, windowImg, windowID, windowTitle, address }: Props) => {
+const Window = ({ onClick, key, children, dragDivRef, window }: Props) => {
     return (
         <div key={key} className="flex flex-col h-[600px] w-[800px] p-1 bg-win-light-gray" onMouseDown={onClick}>
-            <WindowTopBar imgSrc={windowImg} dragDivRef={dragDivRef} windowID={windowID} title={windowTitle}/>
+            <WindowTopBar imgSrc={window.image} dragDivRef={dragDivRef} windowID={window.id} title={window.title} />
 
-            <WindowExtras optionsBar functionsBar address={address} />
+            <WindowExtras optionsBar={window.optionsBar} functionsBar={window.functionsBar} address={window.address} />
 
             {children}
 

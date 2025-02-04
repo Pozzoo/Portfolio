@@ -7,15 +7,17 @@ interface Props {
     img?: string
     content?: ReactNode
     address?: string
+    optionsBar?: boolean
+    functionsBar?: boolean
 }
 
-const DesktopIcon = ({ title, img, content, address }: Props) => {
+const DesktopIcon = ({ title, img, content, address, optionsBar, functionsBar }: Props) => {
     const windowManager = useWindow();
 
     const onDoubleClick = () => {
         if (!content) return;
 
-        windowManager.openWindow(content, (img ? img : ClosedFolderIcon), title, address);
+        windowManager.openWindow(content, (img ? img : ClosedFolderIcon), title, address, optionsBar, functionsBar);
     }
 
     return (
