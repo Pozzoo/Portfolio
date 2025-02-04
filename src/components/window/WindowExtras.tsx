@@ -1,13 +1,17 @@
 import WindowDivider from "./WindowDivider.tsx";
 import WindowButton from "./WindowButton.tsx";
+import useWindow from "../../hooks/useWindow.ts";
 
 interface Props {
+    windowID: number;
     optionsBar?: boolean;
     functionsBar?: boolean;
     address?: string;
 }
 
-const WindowExtras = ({ optionsBar, functionsBar, address }: Props) => {
+const WindowExtras = ({ optionsBar, functionsBar, address, windowID }: Props) => {
+    const windowManager = useWindow();
+
     return (
         <div className="h-fit flex-col border-1 border-win-dark-gray items-center">
             {optionsBar && (
@@ -30,8 +34,8 @@ const WindowExtras = ({ optionsBar, functionsBar, address }: Props) => {
                 <div className="relative h-12 py-1 flex items-center border-t-1 border-white">
                     <WindowDivider/>
 
-                    <WindowButton text="Back" fullHeight/>
-                    <WindowButton text="Forward" fullHeight/>
+                    <WindowButton text="Back" fullHeight onClick={() => windowManager.prevContent(windowID)}/>
+                    <WindowButton text="Forward" fullHeight onClick={() => windowManager.nextContent(windowID)}/>
 
                     <div className="absolute inset-0 border-b-1 border-win-dark-gray pointer-events-none"/>
                 </div>

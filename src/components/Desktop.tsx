@@ -15,7 +15,7 @@ const Desktop = () => {
             }
 
             <div className="h-[90%] w-fit flex flex-col flex-wrap items-start justify-start z-10">
-                <DesktopIcon title="Projects" content={<FolderContent title="Projects"/>} address={'/desktop/Projects/'}/>
+                <DesktopIcon title="Projects" functionsBar content={<FolderContent title="Projects"/>} address={'/desktop/Projects/'}/>
                 <DesktopIcon title="About Me"/>
                 <DesktopIcon title="About Me"/>
                 <DesktopIcon title="About Me"/>
