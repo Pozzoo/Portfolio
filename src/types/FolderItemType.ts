@@ -3,7 +3,7 @@ export type FolderItemType = {
     title: string;
     icon: string;
     canOpen: boolean;
-    type: 'project' | 'folder';
+    type: 'markdown' | 'folder';
     description?: string,
     status?: number,
     shortDescription?: string;

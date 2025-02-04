@@ -1,33 +1,32 @@
 import ClosedFolderIcon from "../../assets/closedFolderIcon.png";
 import useWindow from "../../hooks/useWindow.ts";
+import {FolderItemType} from "../../types/FolderItemType.ts";
+import MarkdownContent from "../contents/MarkdownContent.tsx";
 
 interface Props {
-    title: string;
-    icon: string;
-    canOpen: boolean;
-    type: 'project' | 'folder';
+    item: FolderItemType
 }
 
-const FolderIcon = ({ title, icon, canOpen, type }: Props) => {
+const FolderIcon = ({ item }: Props) => {
     const windowManager = useWindow();
 
     const handleClick = () => {
-        if (!canOpen) return;
+        if (!item.canOpen) return;
 
-        switch (type) {
+        switch (item.type) {
             case "folder":
                 return; //TODO: IMPLEMENT SUB-FOLDER
 
-            case "project":
-                //windowManager.openWindow()
+            case "markdown":
+                windowManager.addContentWithoutID(<MarkdownContent markdownText={item.description!} />);
         }
     }
 
     return (
         <div className="h-fit w-20 m-3 flex flex-col justify-between items-center text-center text-white cursor-pointer" onClick={() => handleClick()}>
-            <img src={icon ? icon : ClosedFolderIcon} alt="Folder Icon" className="h-9 select-none"/>
+            <img src={item.icon ? item.icon : ClosedFolderIcon} alt="Folder Icon" className="h-9 select-none"/>
 
-            <p className="select-none text-black">{title}</p>
+            <p className="select-none text-black">{item.title}</p>
         </div>
     );
 };

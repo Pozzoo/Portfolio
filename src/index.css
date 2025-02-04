@@ -1,11 +1,12 @@
 @import "tailwindcss";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @font-face {
     font-family: 'win95';
-    src: url('../public/fonts/W95FA.otf') format('opentype');
+    src: url('../fonts/W95FA.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
@@ -26,5 +27,31 @@
 
     #root {
         @apply w-screen h-screen;
+    }
+}
+
+.markdown {
+    h1 {
+        @apply text-2xl font-bold mt-4;
+    }
+
+    h2 {
+        @apply text-xl font-bold mt-4;
+    }
+
+    h3 {
+        @apply text-xl mt-2;
+    }
+
+    p {
+        @apply text-base leading-relaxed mt-2;
+    }
+
+    ul {
+        @apply list-disc list-inside;
+    }
+
+    a {
+        @apply text-blue-500 underline;
     }
 }

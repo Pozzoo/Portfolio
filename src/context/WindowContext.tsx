@@ -65,21 +65,29 @@ export const WindowProvider: React.FC<WindowProviderProps> = ({ children }) => {
     }
 
     const addContent = (content: ReactNode, id: number) => {
-        const handleArray = (contentArray: ReactNode[], newContent: ReactNode, contentID: number) => {
-            if (contentID === (contentArray.length - 1)) {
-                return [...contentArray, newContent];
+
+        const handleArray = (window: WindowType, newContent: ReactNode, id: number) => {
+            if (window.id !== id)
+                return { ...window }
+
+            if (window.contentID === (window.content.length - 1)) {
+                return {
+                    ...window,
+                    content: [...window.content, newContent],
+                    contentID: window.contentID + 1,
+                };
             }
 
-            const newArray = contentArray.slice(0, contentID);
+            const newArray = window.content.slice(0, window.contentID);
 
-            return [...newArray, newContent];
+            return {
+                ...window,
+                content: newArray,
+                contentID: newArray.length - 1,
+            }
         }
 
-        const updatedContents: WindowType[] = windows.map(window => ({
-            ...window,
-            content: window.id === id ? (handleArray(window.content, content, window.contentID)) : window.content,
-            contentID: window.id === id ? window.content.length - 1 : window.contentID,
-        }));
+        const updatedContents: WindowType[] = windows.map(window => (handleArray(window, content, id)));
 
         setWindows(updatedContents);
     }

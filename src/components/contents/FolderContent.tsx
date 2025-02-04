@@ -18,14 +18,14 @@ const FolderContent = ({ title }: Props) => {
         //TODO: EXAMPLE DATA, REMOVE LATER
         const response: FolderItemType[] = [
             {
-                description: 'this is a test',
+                description: '### Hello! \n This is a **test**!',
                 status: 1,
                 id: 1,
                 title: 'test',
                 icon: '',
                 shortDescription: 'short description',
                 canOpen: true,
-                type: 'project',
+                type: 'markdown',
             },
 
         ];
@@ -34,7 +34,7 @@ const FolderContent = ({ title }: Props) => {
     }, []);
 
     return (
-        <div className="flex h-full w-full border-win-dark-gray border-2 border-t-1 bg-white overflow-scroll">
+        <>
             <div className="h-full w-fit bg-linear-128 from-[#7BBDE7] to-white to-30%">
                 <div className="w-fit ml-5 mt-1 mb-2.5">
                     <img src={ClosedFolderIcon} alt="Folder"/>
@@ -52,11 +52,11 @@ const FolderContent = ({ title }: Props) => {
             <div className="grid h-fit w-full items-start justify-start grid-cols-5">
                 {folderItems.map((item, i) => {
                     return (
-                        <FolderIcon key={i} icon={item.icon} title={item.title} canOpen={item.canOpen} type={item.type} />
+                        <FolderIcon key={i} item={item}/>
                     )
                 })}
             </div>
-        </div>
+        </>
     );
 };
 
