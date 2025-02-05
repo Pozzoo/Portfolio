@@ -1,7 +1,7 @@
 import ClosedFolderIcon from '../../assets/closedFolderIcon.png';
 import FolderBar from "../folder/FolderBar.tsx";
 import {useEffect, useState} from "react";
-import {FolderItemType} from "../../types/FolderItemType.ts";
+import {ContentType} from "../../types/ContentType.ts";
 import FolderIcon from "../folder/FolderIcon.tsx";
 
 interface Props {
@@ -9,23 +9,24 @@ interface Props {
 }
 
 const FolderContent = ({ title }: Props) => {
-    const [folderItems, setFolderItems] = useState<FolderItemType[]>([]);
+    const [folderItems, setFolderItems] = useState<ContentType[]>([]);
 
     useEffect(() => {
         //TODO: QUERY TO PROJECTS DATA
         //axios.get(`example.com/api/folder/${title}`)...;
 
         //TODO: EXAMPLE DATA, REMOVE LATER
-        const response: FolderItemType[] = [
+        const response: ContentType[] = [
             {
-                description: '### Hello! \n This is a **test**!',
-                status: 1,
                 id: 1,
                 title: 'test',
                 icon: '',
-                shortDescription: 'short description',
                 canOpen: true,
                 type: 'markdown',
+                description: '### Hello! \n This is a **test**!',
+                tags: [1],
+                langs: [1],
+                status: 1
             },
 
         ];

@@ -1,10 +1,10 @@
 import ClosedFolderIcon from "../../assets/closedFolderIcon.png";
 import useWindow from "../../hooks/useWindow.ts";
-import {FolderItemType} from "../../types/FolderItemType.ts";
+import {ContentType} from "../../types/ContentType.ts";
 import MarkdownContent from "../contents/MarkdownContent.tsx";
 
 interface Props {
-    item: FolderItemType
+    item: ContentType
 }
 
 const FolderIcon = ({ item }: Props) => {

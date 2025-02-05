@@ -1,11 +1,11 @@
-export type FolderItemType = {
+export type ContentType = {
     id: number;
     title: string;
     icon: string;
     canOpen: boolean;
     type: 'markdown' | 'folder';
     description?: string,
-    status?: number,
-    shortDescription?: string;
-
+    tags?: number[],
+    langs?: number[],
+    status?: number;
 }

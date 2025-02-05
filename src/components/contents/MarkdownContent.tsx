@@ -5,8 +5,6 @@ interface Props {
 }
 
 const MarkdownContent = ({ markdownText }: Props) => {
-    console.log(markdownText);
-
     return (
         <div className="w-full h-full">
             <Markdown className="markdown">{markdownText}</Markdown>
