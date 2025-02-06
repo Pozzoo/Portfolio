@@ -2,37 +2,20 @@ import ClosedFolderIcon from '../../assets/closedFolderIcon.png';
 import FolderBar from "../folder/FolderBar.tsx";
 import {useEffect, useState} from "react";
 import {ContentType} from "../../types/ContentType.ts";
-import FolderIcon from "../folder/FolderIcon.tsx";
+import Icon from "../Icon.tsx";
+import axios from "../../api/axios.ts";
 
 interface Props {
     title: string
+    id: number
 }
 
-const FolderContent = ({ title }: Props) => {
+const FolderContent = ({ title, id }: Props) => {
     const [folderItems, setFolderItems] = useState<ContentType[]>([]);
 
     useEffect(() => {
-        //TODO: QUERY TO PROJECTS DATA
-        //axios.get(`example.com/api/folder/${title}`)...;
-
-        //TODO: EXAMPLE DATA, REMOVE LATER
-        const response: ContentType[] = [
-            {
-                id: 1,
-                title: 'test',
-                icon: '',
-                canOpen: true,
-                type: 'markdown',
-                description: '### Hello! \n This is a **test**!',
-                tags: [1],
-                langs: [1],
-                status: 1
-            },
-
-        ];
-
-        setFolderItems(response);
-    }, []);
+        axios.get(`/api/content/folder/${id}`).then((response) => setFolderItems(response.data));
+    }, [id]);
 
     return (
         <>
@@ -53,7 +36,7 @@ const FolderContent = ({ title }: Props) => {
             <div className="grid h-fit w-full items-start justify-start grid-cols-5">
                 {folderItems.map((item, i) => {
                     return (
-                        <FolderIcon key={i} item={item}/>
+                        <Icon key={i} content={item}/>
                     )
                 })}
             </div>

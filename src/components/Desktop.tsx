@@ -1,13 +1,20 @@
-import DesktopIcon from "./DesktopIcon.tsx";
 import useWindow from "../hooks/useWindow.ts";
-import FolderContent from "./contents/FolderContent.tsx";
+import {ContentType} from "../types/ContentType.ts";
+import {useEffect, useState} from "react";
+import Icon from "./Icon.tsx";
+import axios from "../api/axios.ts";
 
 const Desktop = () => {
     const windowManager = useWindow();
 
+    const [desktopIcons, setDesktopIcons] = useState<ContentType[]>([]);
+
+    useEffect(() => {
+        axios.get('/api/content/desktop').then((response) => setDesktopIcons(response.data));
+    }, []);
+
     return (
         <div className="overflow-hidden">
-            
             {
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-expect-error
@@ -15,33 +22,9 @@ const Desktop = () => {
             }
 
             <div className="h-[90%] w-fit flex flex-col flex-wrap items-start justify-start z-10">
-                <DesktopIcon title="Projects" functionsBar content={<FolderContent title="Projects"/>} address={'/desktop/Projects/'}/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
-                <DesktopIcon title="About Me"/>
+                {desktopIcons.map((icon) => (
+                    <Icon key={icon.title} content={icon} onDesktop textWhite />
+                ))}
             </div>
         </div>
     );
