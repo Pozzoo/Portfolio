@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
 @tailwind utilities;
 
 @font-face {
@@ -27,6 +25,7 @@
 
     #root {
         @apply w-screen h-screen;
+        image-rendering: crisp-edges;
     }
 }
 
