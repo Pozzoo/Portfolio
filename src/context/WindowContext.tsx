@@ -117,7 +117,7 @@ export const WindowProvider: React.FC<WindowProviderProps> = ({ children }) => {
 
     const prevContent = (id: number) => {
         const subtractFromContentID = (contentID: number) => {
-            if (0 > contentID) {
+            if (0 >= contentID) {
                 return contentID;
             }
 
