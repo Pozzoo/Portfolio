@@ -9,16 +9,21 @@ interface Props {
     onClick: () => void,
     key?: Key,
     children?: ReactNode,
+    isPopup?: boolean,
 }
 
-const Window = ({ onClick, key, children, dragDivRef, window }: Props) => {
+const Window = ({ onClick, key, children, dragDivRef, window, isPopup }: Props) => {
+    const widthCSS = " w-[" + (isPopup ? 500 : 800) + "px] ";
+    const heightCSS = " h-[" + (isPopup ? 200 : 600) + "px] ";
+    const contentCSS = isPopup ? "border-none bg-win-light-gray" : " border-win-dark-gray border-2 border-t-1 bg-white"
+
     return (
-        <div key={key} className="flex flex-col h-[600px] w-[800px] p-1 bg-win-light-gray" onMouseDown={onClick}>
+        <div key={key} className={"flex flex-col p-1 bg-win-light-gray" + widthCSS + heightCSS} onMouseDown={onClick}>
             <WindowTopBar imgSrc={window.image} dragDivRef={dragDivRef} windowID={window.id} title={window.title}/>
 
             <WindowExtras windowID={window.id} optionsBar={window.optionsBar} functionsBar={window.functionsBar} address={window.address}/>
 
-            <div className="flex h-full w-full border-win-dark-gray border-2 border-t-1 bg-white overflow-x-hidden overflow-y-auto">
+            <div className={"flex h-full w-full overflow-x-hidden overflow-y-auto" + contentCSS}>
                 {children}
             </div>
 

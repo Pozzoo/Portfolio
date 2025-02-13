@@ -4,8 +4,9 @@ import DraggableWindow from "../components/window/DraggableWindow.tsx";
 
 type WindowContextType = {
     windows: WindowType[],
-    openWindow: (content: ReactNode, image?: string, title?: string, address?: string, optionsBar?: boolean, functionsBar?: boolean) => void,
+    openWindow: (content: ReactNode, image?: string, title?: string, address?: string, optionsBar?: boolean, functionsBar?: boolean, isPopup?: boolean) => void,
     closeWindow: (id: number) => void,
+    closeWindowWithoutID: () => void,
     renderWindows: React.FC,
     addContent: (content: ReactNode, id: number) => void,
     addContentWithoutID: (content: ReactNode) => void,
@@ -26,12 +27,12 @@ export const WindowProvider: React.FC<WindowProviderProps> = ({ children }) => {
     const renderWindows: React.FC = () => {
         return (
             windows.map((window) => (
-                <DraggableWindow window={window} key={window.id} handleWindowClick={handleWindowClick} />
+                <DraggableWindow window={window} key={window.id} handleWindowClick={handleWindowClick} isPopup={window.isPopup} />
             ))
         )
     }
 
-    const openWindow = (content: ReactNode, image?: string, title?: string, address?: string, optionsBar?: boolean, functionsBar?: boolean) => {
+    const openWindow = (content: ReactNode, image?: string, title?: string, address?: string, optionsBar?: boolean, functionsBar?: boolean, isPopup?: boolean) => {
         let newID = 0
 
         do {
@@ -48,6 +49,7 @@ export const WindowProvider: React.FC<WindowProviderProps> = ({ children }) => {
             address: address,
             optionsBar: optionsBar,
             functionsBar: functionsBar,
+            isPopup: isPopup,
         }
 
         const updatedIndexes: WindowType[] = windows.map(window => ({
@@ -62,6 +64,10 @@ export const WindowProvider: React.FC<WindowProviderProps> = ({ children }) => {
 
     const closeWindow = (id: number) => {
         setWindows(windows.filter(window => window.id !== id));
+    }
+
+    const closeWindowWithoutID = () => {
+        setWindows(windows.filter(window => window.id !== lastIDRef.current));
     }
 
     const addContent = (content: ReactNode, id: number) => {
@@ -145,7 +151,7 @@ export const WindowProvider: React.FC<WindowProviderProps> = ({ children }) => {
     }
 
     return(
-        <WindowContext.Provider value={{windows, openWindow, closeWindow, renderWindows, addContent, addContentWithoutID, nextContent, prevContent}}>
+        <WindowContext.Provider value={{windows, openWindow, closeWindow, closeWindowWithoutID, renderWindows, addContent, addContentWithoutID, nextContent, prevContent}}>
             {children}
         </WindowContext.Provider>
     )

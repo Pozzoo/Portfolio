@@ -3,6 +3,7 @@ import useWindow from "../hooks/useWindow.ts";
 import {ContentType} from "../types/ContentType.ts";
 import MarkdownContent from "./contents/MarkdownContent.tsx";
 import FolderContent from "./contents/FolderContent.tsx";
+import EmptyContent from "./contents/EmptyContent.tsx";
 
 interface Props {
     content: ContentType;
@@ -17,27 +18,28 @@ const Icon = ({ content, textWhite, onDesktop }: Props) => {
     const handleClick = () => {
         if (!content.can_open) return;
 
-        if (onDesktop) {
-            switch (content.type) {
-                case "folder":
-                    windowManager.openWindow(<FolderContent title={content.title} id={content.id} />, content.icon, content.title, `/desktop/${content.title}`, content.options_bar, content.functions_bar);
-                    break;
-
-                case "markdown":
-                    windowManager.openWindow(<MarkdownContent markdownText={content.text!} />, content.icon, content.title, `/desktop/${content.title}`, content.options_bar, content.functions_bar);
-                    break;
-            }
-
-            return;
-        }
-
         switch (content.type) {
             case "folder":
-                windowManager.addContentWithoutID(<FolderContent title={content.title} id={content.id} />)
+                if (onDesktop) {
+                    windowManager.openWindow(<FolderContent title={content.title} id={content.id!} />, content.icon, content.title, `/desktop/${content.title}`, content.options_bar, content.functions_bar, false);
+                    return;
+                }
+
+                windowManager.addContentWithoutID(<FolderContent title={content.title} id={content.id!} />)
                 break;
 
             case "markdown":
+                if (onDesktop) {
+                    windowManager.openWindow(<MarkdownContent markdownText={content.text!} />, content.icon, content.title, `/desktop/${content.title}`, content.options_bar, content.functions_bar, false);
+                    return;
+                }
+
                 windowManager.addContentWithoutID(<MarkdownContent markdownText={content.text!} />);
+                break;
+
+            case "popup":
+                windowManager.openWindow(<EmptyContent content={content.page}/>, content.icon, content.title, '',  false, false, true);
+                return;
         }
     }
 

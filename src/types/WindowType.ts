@@ -10,4 +10,5 @@ export type WindowType = {
     address?: string,
     optionsBar?: boolean,
     functionsBar?: boolean,
+    isPopup?: boolean,
 }

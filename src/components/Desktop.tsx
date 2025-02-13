@@ -3,6 +3,7 @@ import {ContentType} from "../types/ContentType.ts";
 import {useEffect, useState} from "react";
 import Icon from "./Icon.tsx";
 import axios from "../api/axios.ts";
+import LoginContent from "../pages/LoginPage.tsx";
 
 const Desktop = () => {
     const windowManager = useWindow();
@@ -21,10 +22,12 @@ const Desktop = () => {
                 windowManager.renderWindows()
             }
 
-            <div className="h-[90%] w-fit flex flex-col flex-wrap items-start justify-start z-10">
+            <div className="h-fit w-fit grid grid-rows-10 grid-flow-col z-10">
                 {desktopIcons.map((icon) => (
                     <Icon key={icon.title} content={icon} onDesktop textWhite />
                 ))}
+
+                <Icon content={LoginContent} onDesktop textWhite />
             </div>
         </div>
     );

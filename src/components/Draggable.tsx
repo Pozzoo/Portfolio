@@ -5,11 +5,14 @@ interface Props {
     dragPointRef: RefObject<HTMLDivElement>;
     windowID: number;
     children?: ReactNode;
+    isPopup?: boolean;
 }
 
-const Draggable = ({ dragPointRef, children, windowID }: Props) => {
-
+const Draggable = ({ dragPointRef, children, windowID, isPopup }: Props) => {
     const windowManager = useWindow();
+
+    const widthCSS = " w-[" + (isPopup ? 500 : 800) + "px] ";
+    const heightCSS = " h-[" + (isPopup ? 200 : 600) + "px] ";
 
     const isClicked = useRef<boolean>(false);
     const windowRef = useRef<HTMLDivElement>(null);
@@ -68,7 +71,7 @@ const Draggable = ({ dragPointRef, children, windowID }: Props) => {
     }, [dragPointRef])
 
     return (
-        <div className={"w-fit h-fit absolute " + ("z-" + (200 * (windowManager.windows.length - windowID)))} ref={windowRef}>
+        <div className={widthCSS + heightCSS + "absolute " + ("z-" + (200 * (windowManager.windows.length - windowID)))} ref={windowRef}>
             {children}
         </div>
     );
