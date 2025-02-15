@@ -13,12 +13,10 @@ interface Props {
 }
 
 const Window = ({ onClick, key, children, dragDivRef, window, isPopup }: Props) => {
-    const widthCSS = " w-[" + (isPopup ? 500 : 800) + "px] ";
-    const heightCSS = " h-[" + (isPopup ? 200 : 600) + "px] ";
     const contentCSS = isPopup ? "border-none bg-win-light-gray" : " border-win-dark-gray border-2 border-t-1 bg-white"
 
     return (
-        <div key={key} className={"flex flex-col p-1 bg-win-light-gray" + widthCSS + heightCSS} onMouseDown={onClick}>
+        <div key={key} style={{ width: isPopup ? "500px" : "800px", height: isPopup ? "200px" : "600px" }} className={"flex flex-col p-1 bg-win-light-gray"} onMouseDown={onClick}>
             <WindowTopBar imgSrc={window.image} dragDivRef={dragDivRef} windowID={window.id} title={window.title}/>
 
             <WindowExtras windowID={window.id} optionsBar={window.optionsBar} functionsBar={window.functionsBar} address={window.address}/>

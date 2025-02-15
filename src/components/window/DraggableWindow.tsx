@@ -13,7 +13,7 @@ const DraggableWindow = ({ window, handleWindowClick, isPopup }: Props) => {
     const dragDivRef = useRef<HTMLDivElement>(null);
 
     return (
-        <Draggable dragPointRef={dragDivRef} windowID={window.id} isPopup={isPopup} >
+        <Draggable dragPointRef={dragDivRef} windowID={window.id} >
             <Window onClick={() => handleWindowClick(window.id)} dragDivRef={dragDivRef} window={window} isPopup={isPopup} >
                 {window.content[window.contentID]}
             </Window>

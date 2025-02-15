@@ -6,7 +6,7 @@ export type ContentType = {
     title: string;
     icon: string;
     can_open: boolean;
-    type: 'markdown' | 'folder' | 'popup';
+    type: 'markdown' | 'folder' | 'popup' | 'empty';
     options_bar: boolean;
     functions_bar: boolean;
     text?: string;

@@ -19,7 +19,6 @@ const LoginPage = () => {
             password: { value: string };
         };
 
-
         axios.post("/api/auth/login", {
             "email": target.email.value,
             "password": target.password.value,
@@ -32,7 +31,7 @@ const LoginPage = () => {
             }
 
             console.log(err);
-        })
+        });
     }
 
     return (

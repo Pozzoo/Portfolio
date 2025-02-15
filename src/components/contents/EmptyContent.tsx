@@ -6,9 +6,9 @@ interface Props {
 
 const EmptyContent = ({ content }: Props) => {
     return (
-        <div className="w-full h-full">
+        <>
             {content}
-        </div>
+        </>
     );
 };
 

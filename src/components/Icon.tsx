@@ -37,9 +37,18 @@ const Icon = ({ content, textWhite, onDesktop }: Props) => {
                 windowManager.addContentWithoutID(<MarkdownContent markdownText={content.text!} />);
                 break;
 
+            case "empty":
+                if (onDesktop) {
+                    windowManager.openWindow(<EmptyContent content={content.page} />, content.icon, content.title, `/desktop/${content.title}`, content.options_bar, content.functions_bar, false);
+                    return;
+                }
+
+                windowManager.addContentWithoutID(<EmptyContent content={content.page} />);
+                break;
+
             case "popup":
                 windowManager.openWindow(<EmptyContent content={content.page}/>, content.icon, content.title, '',  false, false, true);
-                return;
+                break;
         }
     }
 

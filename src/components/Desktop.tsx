@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import Icon from "./Icon.tsx";
 import axios from "../api/axios.ts";
 import LoginContent from "../pages/LoginPage.tsx";
+import ControlPanelContent from "../pages/ControlPanelPage.tsx";
 
 const Desktop = () => {
     const windowManager = useWindow();
@@ -28,6 +29,8 @@ const Desktop = () => {
                 ))}
 
                 <Icon content={LoginContent} onDesktop textWhite />
+
+                <Icon content={ControlPanelContent} onDesktop textWhite />
             </div>
         </div>
     );
