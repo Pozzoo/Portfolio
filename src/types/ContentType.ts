@@ -4,7 +4,7 @@ export type ContentType = {
     id?: number;
     parent_id?: number
     title: string;
-    icon: string;
+    icon?: string;
     can_open: boolean;
     type: 'markdown' | 'folder' | 'popup' | 'empty';
     options_bar: boolean;

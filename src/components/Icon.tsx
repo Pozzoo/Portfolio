@@ -4,6 +4,8 @@ import {ContentType} from "../types/ContentType.ts";
 import MarkdownContent from "./contents/MarkdownContent.tsx";
 import FolderContent from "./contents/FolderContent.tsx";
 import EmptyContent from "./contents/EmptyContent.tsx";
+import {useEffect, useState} from "react";
+import axios from "../api/axios.ts";
 
 interface Props {
     content: ContentType;
@@ -14,6 +16,8 @@ interface Props {
 const Icon = ({ content, textWhite, onDesktop }: Props) => {
     const textColor = textWhite ? 'text-white' : 'text-black';
     const windowManager = useWindow();
+
+    const [icon, setIcon] = useState(content.icon ? content.icon : ClosedFolderIcon);
 
     const handleClick = () => {
         if (!content.can_open) return;
@@ -52,9 +56,16 @@ const Icon = ({ content, textWhite, onDesktop }: Props) => {
         }
     }
 
+    useEffect(() => {
+        if (content.id)
+            axios.get(`/api/content/${content.id}/icon`).then((r) => {
+                setIcon(r.data)
+            });
+    }, []);
+
     return (
         <div className={`h-fit w-20 m-3 flex flex-col justify-between items-center text-center cursor-pointer`} onClick={() => handleClick()}>
-            <img src={content.icon ? content.icon : ClosedFolderIcon} alt="Folder Icon" className="h-9 select-none"/>
+            <img src={icon} alt="Folder Icon" className="h-9 select-none"/>
 
             <p className={`select-none ${textColor}`}>{content.title}</p>
         </div>

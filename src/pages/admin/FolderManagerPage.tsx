@@ -19,7 +19,8 @@ const FolderManagerPage = () => {
     }
 
     useEffect(() => {
-        axios.get(`/api/content/${selectedNode}`).then((res) => setCurrentContent(res.data));
+        if (selectedNode)
+            axios.get(`/api/content/${selectedNode}`).then((res) => setCurrentContent(res.data));
     }, [selectedNode]);
 
     useEffect(() => {
@@ -32,7 +33,7 @@ const FolderManagerPage = () => {
                 <TreeView data={treeData} onNodeClick={handleNodeClick} />
             </div>
 
-            <div className="w-full h-full">
+            <div className="w-full h-full flex flex-col justify-between">
                 {currentContent && (
                     <ContentDisplay data={currentContent}/>
                 )}
